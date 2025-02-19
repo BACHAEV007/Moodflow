@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Moodflow</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="google_in">Войти через Google</string>
+</resources>
