@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, JournalActivity::class.java)
             startActivity(intent)
         }
+        binding.bubbleView.startAnimation()
 
 
     }
