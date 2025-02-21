@@ -16,12 +16,14 @@ import com.example.moodflow.uicontent.CardContent
 import com.example.moodflow.uicontent.CardStyle
 
 class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
-    val cardList = listOf(
-        CardContent(data = "вчера, 23:40", color = CardColor.GREEN, feeling = "спокойствие"),
-        CardContent(data = "вчера, 23:40", color = CardColor.BLUE, feeling = "выгорание"),
-        CardContent(data = "воскресенье, 23:40", color = CardColor.YELLOW, feeling = "продуктивность"),
-        CardContent(data = "воскресенье, 23:40", color = CardColor.RED, feeling = "беспокойство")
-    )
+    private val cardList = mutableListOf<CardContent>()
+
+    fun submitList(newCards: List<CardContent>) {
+        cardList.clear()
+        cardList.addAll(newCards)
+        notifyDataSetChanged()
+    }
+
     inner class CardViewHolder(view: View) : RecyclerView.ViewHolder(view){
         private val binding = CardItemBinding.bind(view)
 
