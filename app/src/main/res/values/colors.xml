@@ -7,4 +7,5 @@
     <color name="green_card_text">#33FF77</color>
     <color name="yellow_card_text">#FFBB33</color>
     <color name="red_card_text">#FF3333</color>
+    <color name="bottom_nav_color">#333333</color>
 </resources>

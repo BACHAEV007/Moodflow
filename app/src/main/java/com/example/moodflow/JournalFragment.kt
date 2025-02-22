@@ -1,24 +1,23 @@
 package com.example.moodflow
 
 import android.os.Bundle
-import android.widget.TextView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moodflow.databinding.JournalScreenBinding
 import com.example.moodflow.state.JournalState
 
-class JournalActivity : AppCompatActivity() {
+class JournalFragment : Fragment(R.layout.journal_screen) {
     private val cardAdapter = CardAdapter()
     private lateinit var binding: JournalScreenBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val journalState = JournalState.Content()
         cardAdapter.submitList(journalState.cards)
-        super.onCreate(savedInstanceState)
-        binding = JournalScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        super.onViewCreated(view, savedInstanceState)
+        binding = JournalScreenBinding.bind(view)
         binding.progressCircular.startAnimation()
-        val carouselManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val carouselManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding?.cards?.apply {
             layoutManager = carouselManager
             adapter = cardAdapter
