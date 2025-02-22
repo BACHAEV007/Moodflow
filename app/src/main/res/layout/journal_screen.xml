@@ -13,6 +13,8 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp">
 
+
+
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
@@ -22,12 +24,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/cardsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_corner"
                 android:fontFamily="@font/velasans_bold"
-                android:text="4 записи"
+                android:text="5 записей"
                 android:textSize="12sp" />
 
             <LinearLayout
@@ -42,13 +44,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/velasans_regular"
-                    android:text="в день: "
+                    android:text="@string/in_day"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/cardsInDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
                     android:fontFamily="@font/velasans_bold"
                     android:text="2 записи"
                     android:textSize="12sp" />
@@ -65,14 +68,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/velasans_regular"
-                    android:text="cерия:"
+                    android:text="@string/seria"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/streak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/velasans_bold"
+                    android:layout_marginStart="2dp"
                     android:text="0 дней"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -94,9 +98,54 @@
             android:id="@+id/progress_circular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_circular"
+            app:layout_constraintEnd_toEndOf="@+id/progress_circular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progress_circular">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/plus_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_note"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/velasans_medium"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_circular"
+            android:layout_marginTop="32dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

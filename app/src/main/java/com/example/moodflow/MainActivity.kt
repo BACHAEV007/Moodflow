@@ -22,9 +22,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         binding.button.setOnClickListener {
-            val intent = Intent(this@MainActivity, JournalActivity::class.java)
+            val intent = Intent(this@MainActivity, BottomNavigationActivity::class.java)
             startActivity(intent)
         }
+        binding.bubbleView.startAnimation()
 
 
     }

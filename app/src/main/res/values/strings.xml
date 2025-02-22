@@ -2,4 +2,10 @@
     <string name="app_name">Moodflow</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="google_in">Войти через Google</string>
+    <string name="add_note">Добавить запись</string>
+    <string name="in_day">в день:</string>
+    <string name="seria">cерия:</string>
+    <string name="journal">Журнал</string>
+    <string name="statistic">Статистика</string>
+    <string name="settings">Настройки</string>
 </resources>

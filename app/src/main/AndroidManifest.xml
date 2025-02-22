@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".JournalActivity"
+            android:name=".BottomNavigationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

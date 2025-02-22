@@ -6,6 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <com.example.moodflow.view.BubbleView
+        android:id="@+id/bubble_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.example.moodflow.view.BubbleView>
 
     <TextView
         android:id="@+id/textView"
@@ -14,6 +20,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:textSize="48sp"
+        android:textColor="@color/black"
         android:fontFamily="@font/gwen_trial_extrabold"
         android:text="@string/welcome"
         app:layout_constraintStart_toStartOf="parent"

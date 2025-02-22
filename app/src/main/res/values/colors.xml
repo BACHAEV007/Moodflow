@@ -3,4 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#FF2C2C2E</color>
+    <color name="blue_card_text">#33BBFF</color>
+    <color name="green_card_text">#33FF77</color>
+    <color name="yellow_card_text">#FFBB33</color>
+    <color name="red_card_text">#FF3333</color>
+    <color name="bottom_nav_color">#333333</color>
 </resources>
