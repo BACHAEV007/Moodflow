@@ -16,7 +16,7 @@ import com.example.moodflow.uicontent.WeekEmotionContent
 import com.google.android.flexbox.FlexboxLayout
 
 class WeekEmotionAdapter(private val context: Context) : RecyclerView.Adapter<WeekEmotionAdapter.EmotionViewHolder>() {
-    private val emotionList = mutableListOf<WeekEmotionContent>(
+    private val emotionList = mutableListOf(
         WeekEmotionContent(
             emotions = listOf("Спокойствие", "Продуктивность", "Счастье"),
             date = "17 фев",
