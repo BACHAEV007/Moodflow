@@ -67,7 +67,8 @@ class BubbleView @JvmOverloads constructor(
         var centerY: Float,
         var radius: Float,
         var startColor: Int,
-        var endColor: Int
+        var endColor: Int,
+        var percent: Int = 0
     )
 
     fun startAnimation() {

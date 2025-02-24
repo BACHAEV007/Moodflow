@@ -1,4 +1,4 @@
-package com.example.moodflow
+package com.example.moodflow.adapter
 
 import android.content.Context
 import android.content.res.Resources
@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moodflow.R
 import com.example.moodflow.databinding.CardItemBinding
 import com.example.moodflow.uicontent.CardColor
 import com.example.moodflow.uicontent.CardContent

@@ -6,12 +6,12 @@
         android:title="@string/journal" />
 
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/menu_statistic"
         android:icon="@drawable/statistic_selector"
-        android:title="@string/settings" />
+        android:title="@string/statistic" />
 
     <item
-        android:id="@+id/menu_statistic"
+        android:id="@+id/menu_settings"
         android:icon="@drawable/settings_selector"
-        android:title="@string/statistic" />
+        android:title="@string/settings" />
 </menu>
