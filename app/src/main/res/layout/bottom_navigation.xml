@@ -18,6 +18,7 @@
         app:itemIconTint="@color/bottom_icon_selector"
         app:itemTextColor="@color/white"
         app:itemActiveIndicatorStyle="@style/Custom.Indicator"
-        android:fontFamily="@font/velasans_medium"/>
+        app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

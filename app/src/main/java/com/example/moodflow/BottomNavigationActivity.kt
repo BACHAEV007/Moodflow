@@ -28,7 +28,7 @@ class BottomNavigationActivity : AppCompatActivity(R.layout.bottom_navigation) {
                     true
                 }
                 R.id.menu_statistic -> {
-                    replaceFragment(JournalFragment())
+                    replaceFragment(StatisticFragment())
                     true
                 }
                 else -> false

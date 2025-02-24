@@ -8,4 +8,6 @@
     <string name="journal">Журнал</string>
     <string name="statistic">Статистика</string>
     <string name="settings">Настройки</string>
+    <string name="what_about_your_feeling">Что вы сейчас чувствуете?</string>
+    <string name="emotion_in_week">Эмоции по дням недели</string>
 </resources>

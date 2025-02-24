@@ -2,9 +2,11 @@ package com.example.moodflow
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moodflow.adapter.CardAdapter
+import com.example.moodflow.adapter.SpaceItemDecoration
+import com.example.moodflow.adapter.dpToPx
 import com.example.moodflow.databinding.JournalScreenBinding
 import com.example.moodflow.state.JournalState
 
