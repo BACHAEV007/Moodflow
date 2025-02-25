@@ -42,13 +42,14 @@ class VerticalStatisticScreenFragment : Fragment() {
 }
 
 class VerticalStatisticScreenAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 4
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> EmotionCategoriesFragment()
             1 -> WeekEmotionFragment()
             2 -> FrequentScreenFragment()
+            3 -> DayEmotionFragment()
             else -> throw IllegalStateException("Недопустимая позиция")
         }
     }
