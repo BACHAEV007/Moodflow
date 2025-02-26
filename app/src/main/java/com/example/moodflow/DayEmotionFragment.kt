@@ -15,17 +15,72 @@ class DayEmotionFragment : Fragment(R.layout.day_emotion_screen) {
         val firstColorBlocksView = binding.firstColumn
 
         val blocks = listOf(
-            ColorBlocksView.Block(color = Color.YELLOW, percentage = 0.5f),
-            ColorBlocksView.Block(color = Color.RED, percentage = 0.2f),
-            ColorBlocksView.Block(color = Color.GREEN, percentage = 0.3f)
+            listOf(
+                ColorBlocksView.Block(
+                    percentage = 0.5f,
+                    startColor = getGradientStartColor(R.drawable.green_image_card),
+                    endColor = getGradientEndColor(R.drawable.green_image_card)
+                ),
+                ColorBlocksView.Block(
+                    percentage = 0.2f,
+                    startColor = getGradientStartColor(R.drawable.red_image_card),
+                    endColor = getGradientEndColor(R.drawable.red_image_card)
+                ),
+                ColorBlocksView.Block(
+                    percentage = 0.3f,
+                    startColor = getGradientStartColor(R.drawable.blue_shell_icon),
+                    endColor = getGradientEndColor(R.drawable.blue_shell_icon)
+                )
+            ),
+            listOf(
+                ColorBlocksView.Block(
+                    percentage = 0.1f,
+                    startColor = getGradientStartColor(R.drawable.green_image_card),
+                    endColor = getGradientEndColor(R.drawable.green_image_card)
+                ),
+                ColorBlocksView.Block(
+                    percentage = 0.9f,
+                    startColor = getGradientStartColor(R.drawable.red_image_card),
+                    endColor = getGradientEndColor(R.drawable.red_image_card)
+                )
+            ),
+            listOf(
+                ColorBlocksView.Block(
+                    percentage = 1f,
+                    startColor = getGradientStartColor(R.drawable.yellow_circle_icon),
+                    endColor = getGradientEndColor(R.drawable.yellow_circle_icon)
+                )
+            ),
+            listOf(),
+            listOf()
+
         )
 
-        firstColorBlocksView.setBlocks(blocks)
-        binding.secondColumn.setBlocks()
-        binding.thirdColumn.setBlocks()
+        firstColorBlocksView.setBlocks(blocks[0])
+        binding.secondColumn.setBlocks(blocks[1])
+        binding.thirdColumn.setBlocks(blocks[2])
         binding.fourthColumn.setBlocks()
         binding.fifthColumn.setBlocks()
+        binding.earlyMorning.text = blocks[0].size.toString()
+        binding.morning.text = blocks[1].size.toString()
+        binding.day.text = blocks[2].size.toString()
+        binding.evening.text = blocks[3].size.toString()
+        binding.lateEvening.text = blocks[4].size.toString()
+    }
 
+    private fun getGradientStartColor(iconRes: Int): Int = when (iconRes) {
+        R.drawable.green_image_card -> R.color.green_start_gradient
+        R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_start_gradient
+        R.drawable.red_image_card -> R.color.red_start_gradient
+        R.drawable.blue_shell_icon, R.drawable.blue_image_card -> R.color.blue_start_gradient
+        else -> Color.GRAY
+    }
 
+    private fun getGradientEndColor(iconRes: Int): Int = when (iconRes) {
+        R.drawable.green_image_card -> R.color.green_end_gradient
+        R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_end_gradient
+        R.drawable.red_image_card -> R.color.red_end_gradient
+        R.drawable.blue_shell_icon, R.drawable.blue_image_card -> R.color.blue_end_gradient
+        else -> Color.LTGRAY
     }
 }

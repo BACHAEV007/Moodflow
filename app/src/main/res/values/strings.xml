@@ -9,9 +9,9 @@
     <string name="statistic">Статистика</string>
     <string name="settings">Настройки</string>
     <string name="what_about_your_feeling">Что вы сейчас чувствуете?</string>
-    <string name="emotion_in_week">Эмоции по дням недели</string>
+    <string name="emotion_in_week">Эмоции\nпо дням недели</string>
     <string name="frequent_emotions">Самые частые эмоции</string>
-    <string name="your_day_emotion">Ваше настроение в течение дня</string>
+    <string name="your_day_emotion">Ваше настроение\nв течение дня</string>
     <string name="early_morning">Раннее утро</string>
     <string name="morning">Утро</string>
     <string name="day">День</string>
