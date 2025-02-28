@@ -17,4 +17,10 @@
     <string name="day">День</string>
     <string name="evening">Вечер</string>
     <string name="lately_evening">Поздний вечер</string>
+    <string name="send_notifications">Присылать уведомления</string>
+    <string name="finger_enter">Вход по отпечатку пальца</string>
+    <string name="notification">Напоминание</string>
+    <string name="minutes">Минуты</string>
+    <string name="hours">Часы</string>
+    <string name="save">Сохранить</string>
 </resources>

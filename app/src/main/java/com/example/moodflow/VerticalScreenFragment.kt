@@ -1,5 +1,6 @@
 package com.example.moodflow
 
+import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.TypedValue
@@ -25,6 +26,7 @@ class VerticalStatisticScreenFragment : Fragment() {
         return inflater.inflate(R.layout.vertical_statistic_screen, container, false)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = VerticalStatisticScreenBinding.bind(view)
