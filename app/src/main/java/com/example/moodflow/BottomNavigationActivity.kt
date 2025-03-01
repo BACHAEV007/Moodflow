@@ -1,15 +1,11 @@
 package com.example.moodflow
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.moodflow.databinding.BottomNavigationBinding
-import com.example.moodflow.databinding.JournalScreenBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationActivity : AppCompatActivity() {
     private lateinit var binding: BottomNavigationBinding
@@ -22,6 +18,15 @@ class BottomNavigationActivity : AppCompatActivity() {
         val bottomNavigationView = binding.bottomNavigation
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.journalFragment,
+                R.id.settingsFragment,
+                R.id.statisticFragment -> binding.bottomNavigation.isVisible = true
+
+                else -> binding.bottomNavigation.isVisible = false
+            }
+        }
     }
 }
 

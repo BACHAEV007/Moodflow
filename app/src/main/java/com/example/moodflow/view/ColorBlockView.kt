@@ -40,7 +40,7 @@ class ColorBlocksView @JvmOverloads constructor(
             TypedValue.COMPLEX_UNIT_DIP,
             4f,
             Resources.getSystem().displayMetrics
-        )
+        ) 
 
         textPaint.color = Color.BLACK
         textPaint.textSize = TypedValue.applyDimension(

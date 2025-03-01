@@ -19,4 +19,9 @@
         android:name="com.example.moodflow.SettingsFragment"
         android:label="SettingsFragment">
     </fragment>
+    <fragment
+        android:id="@+id/chooseEmotionFragment"
+        android:name="com.example.moodflow.ChooseEmotionFragment"
+        android:label="ChooseEmotionScreen" />
+
 </navigation>

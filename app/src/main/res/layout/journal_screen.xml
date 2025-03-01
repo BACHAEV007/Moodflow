@@ -128,7 +128,7 @@
             app:layout_constraintTop_toTopOf="@+id/progress_circular">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/addEmotionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -146,7 +146,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                app:layout_constraintTop_toBottomOf="@+id/addEmotionButton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
