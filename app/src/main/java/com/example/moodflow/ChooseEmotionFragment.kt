@@ -1,24 +1,23 @@
 package com.example.moodflow
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moodflow.adapter.Emotion
 import com.example.moodflow.adapter.EmotionAdapter
-import com.example.moodflow.databinding.AddNoteScreenBinding
+import com.example.moodflow.databinding.ChooseEmotionScreenBinding
 
-class ChooseEmotionFragment : Fragment(R.layout.add_note_screen) {
-    private lateinit var binding: AddNoteScreenBinding
+class ChooseEmotionFragment : Fragment(R.layout.choose_emotion_screen) {
+    private lateinit var binding: ChooseEmotionScreenBinding
     private lateinit var emotionAdapter: EmotionAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = AddNoteScreenBinding.bind(view)
+        binding = ChooseEmotionScreenBinding.bind(view)
         val emotions = listOf(
             Emotion(getString(R.string.emotion_rage), R.color.red_card_text, getString(R.string.description_rage)),
             Emotion(getString(R.string.emotion_tension), R.color.red_card_text, getString(R.string.description_tension)),
@@ -54,7 +53,7 @@ class ChooseEmotionFragment : Fragment(R.layout.add_note_screen) {
             parentFragmentManager.popBackStack()
         }
         binding.forwardButton.setOnClickListener {
-            /*TODO*/
+            findNavController().navigate(R.id.addNotionFragment)
         }
     }
 

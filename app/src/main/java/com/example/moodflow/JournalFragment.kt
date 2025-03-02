@@ -10,6 +10,7 @@ import com.example.moodflow.adapter.SpaceItemDecoration
 import com.example.moodflow.adapter.dpToPx
 import com.example.moodflow.databinding.JournalScreenBinding
 import com.example.moodflow.state.JournalState
+import com.example.moodflow.uicontent.GradientColor
 
 class JournalFragment : Fragment(R.layout.journal_screen) {
     private val cardAdapter = CardAdapter()
@@ -19,10 +20,17 @@ class JournalFragment : Fragment(R.layout.journal_screen) {
         binding = JournalScreenBinding.bind(view)
         val journalState = JournalState.Content()
         cardAdapter.submitList(journalState.cards)
+        val gradientCircleView = binding.gradientCircle
+        val progressMap = mapOf(
+            GradientColor.YELLOW to 0.4f,
+            GradientColor.GREEN to 0.5f,
+            GradientColor.RED to 0.1f
+        )
+        gradientCircleView.setProgress(progressMap)
 
         binding.progressCircular.startAnimation()
         val carouselManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding?.cards?.apply {
+        binding.cards.apply {
             layoutManager = carouselManager
             adapter = cardAdapter
             setNestedScrollingEnabled(false)

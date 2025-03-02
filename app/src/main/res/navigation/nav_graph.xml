@@ -23,5 +23,9 @@
         android:id="@+id/chooseEmotionFragment"
         android:name="com.example.moodflow.ChooseEmotionFragment"
         android:label="ChooseEmotionScreen" />
+    <fragment
+        android:id="@+id/addNotionFragment"
+        android:name="com.example.moodflow.AddNotionFragment"
+        android:label="AddNotionFragment" />
 
 </navigation>

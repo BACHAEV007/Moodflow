@@ -61,4 +61,9 @@
     <string name="description_apathy">отсутствие интереса и мотивации</string>
     <string name="description_gratitude">чувство признательности и тепла</string>
     <string name="description_security">ощущение безопасности и уюта</string>
+    <string name="notion">Запись</string>
+    <string name="mock_14_36_time">сегодня, 14:36</string>
+    <string name="what_did_you_do">Чем вы занимались?</string>
+    <string name="with_who">С кем вы были?</string>
+    <string name="where_you_been">Где вы были?</string>
 </resources>

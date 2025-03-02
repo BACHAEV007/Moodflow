@@ -3,108 +3,337 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginBottom="24dp">
 
-
-
-    <com.otaliastudios.zoom.ZoomLayout
-        android:id="@+id/zoomLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:hasClickableChildren="true"
-        android:clipChildren="false">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/emotion_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false">
-        </androidx.recyclerview.widget.RecyclerView>
-    </com.otaliastudios.zoom.ZoomLayout>
-
-    <ImageView
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/back_button"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/gwen_trial_regular"
+            android:lineHeight="32dp"
+            android:text="@string/notion"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/add_note_button_background"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout4"
+        android:layout_marginTop="24dp">
 
-        <TextView
-            android:id="@+id/choose_emotion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_emotion"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:layout_marginEnd="16dp"
-            android:lineHeight="18dp"
-            android:fontFamily="@font/velasans_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forward_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/forward_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/next_button_arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/add_notion_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/description_cont"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forward_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="16dp"
-            android:visibility="invisible">
+            android:layout_marginBottom="24dp">
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mock_feeling_tired_description"
-                android:fontFamily="@font/velasans_regular"
-                android:textSize="12sp"
-                android:lineHeight="18dp"
-                app:layout_constraintTop_toBottomOf="@id/emotion_name"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/emotion_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mock_tired"
-                android:textSize="12sp"
-                android:lineHeight="18dp"
-                android:fontFamily="@font/velasans_bold"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/blue_card_text"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteX="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_shape"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/velasans_regular"
+                        android:lineHeight="18dp"
+                        android:text="@string/mock_14_36_time"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="48dp"
+                        android:fontFamily="@font/velasans_regular"
+                        android:lineHeight="28dp"
+                        android:text="Я чувствую"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gwen_trial_bold"
+                        android:lineHeight="32dp"
+                        android:text="@string/mock_tired"
+                        android:textColor="@color/blue_card_text"
+                        android:textSize="28sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                    <ImageView
+                        android:id="@+id/feel_icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/blue_shell_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                    </ImageView>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/doing_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/card">
+
+                    <TextView
+                        android:id="@+id/doing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="@string/what_did_you_do"
+                        android:fontFamily="@font/velasans_medium"
+                        android:textSize="16sp"
+                        android:lineHeight="24dp" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/activities_chip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/doing">
+                        <EditText
+                            android:id="@+id/edit_activity_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:visibility="gone"
+                            android:background="@drawable/add_note_button_background"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:lineHeight="20dp"
+                            android:textCursorDrawable="@drawable/color_cursor"
+                            android:maxWidth="90dp"
+                            android:minWidth="30dp"
+                            android:paddingStart="8dp"
+                            android:fontFamily="@font/velasans_regular"
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/add_activity_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:textStartPadding="0dp"
+                            app:textEndPadding="0dp"
+                            app:chipStartPadding="6dp"
+                            app:chipEndPadding="6dp"
+                            app:chipBackgroundColor="@color/gray"
+                            app:chipCornerRadius="32dp"
+                            app:chipIconVisible="true"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:ensureMinTouchTargetSize="false"
+                            app:chipStrokeWidth="0dp"
+                            app:chipIconSize="20dp"
+                            app:chipIconTint="@color/white"
+
+                            app:chipIcon="@drawable/plus_ic" />
+
+
+                    </com.google.android.material.chip.ChipGroup>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/environment_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/doing_cont">
+
+                    <TextView
+                        android:id="@+id/environment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="@string/with_who"
+                        android:fontFamily="@font/velasans_medium"
+                        android:textSize="16sp"
+                        android:lineHeight="24dp" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/environment_chip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/environment">
+                        <EditText
+                            android:id="@+id/edit_environment_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:visibility="gone"
+                            android:background="@drawable/add_note_button_background"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:lineHeight="20dp"
+                            android:textCursorDrawable="@drawable/color_cursor"
+                            android:maxWidth="90dp"
+                            android:minWidth="30dp"
+                            android:paddingStart="8dp"
+                            android:fontFamily="@font/velasans_regular"
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/add_environment_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:textStartPadding="0dp"
+                            app:textEndPadding="0dp"
+                            app:chipStartPadding="6dp"
+                            app:chipEndPadding="6dp"
+                            app:chipBackgroundColor="@color/gray"
+                            app:chipCornerRadius="32dp"
+                            app:chipIconVisible="true"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:ensureMinTouchTargetSize="false"
+                            app:chipStrokeWidth="0dp"
+                            app:chipIconSize="20dp"
+                            app:chipIconTint="@color/white"
+
+                            app:chipIcon="@drawable/plus_ic" />
+                    </com.google.android.material.chip.ChipGroup>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/environment_cont">
+
+                    <TextView
+                        android:id="@+id/place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="@string/where_you_been"
+                        android:fontFamily="@font/velasans_medium"
+                        android:textSize="16sp"
+                        android:lineHeight="24dp" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/place_chip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/place">
+                        <EditText
+                            android:id="@+id/edit_place_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:visibility="gone"
+                            android:background="@drawable/add_note_button_background"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:lineHeight="20dp"
+                            android:textCursorDrawable="@drawable/color_cursor"
+                            android:maxWidth="90dp"
+                            android:minWidth="30dp"
+                            android:paddingStart="8dp"
+                            android:fontFamily="@font/velasans_regular"
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/add_place_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:textStartPadding="0dp"
+                            app:textEndPadding="0dp"
+                            app:chipStartPadding="6dp"
+                            app:chipEndPadding="6dp"
+                            app:chipBackgroundColor="@color/gray"
+                            app:chipCornerRadius="32dp"
+                            app:chipIconVisible="true"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:ensureMinTouchTargetSize="false"
+                            app:chipStrokeWidth="0dp"
+                            app:chipIconSize="20dp"
+                            app:chipIconTint="@color/white"
+
+                            app:chipIcon="@drawable/plus_ic" />
+                    </com.google.android.material.chip.ChipGroup>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_notion_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/velasans_medium"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp"
+            android:text="@string/save"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="80dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

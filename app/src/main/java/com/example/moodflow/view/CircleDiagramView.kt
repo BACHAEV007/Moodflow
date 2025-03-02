@@ -26,6 +26,28 @@ class CircleDiagramView @JvmOverloads constructor(
         CircleData(2f, 0xFF3333FF.toInt(), 0xFF6666FF.toInt())
     )
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+        val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+
+        val width = when (widthMode) {
+            MeasureSpec.EXACTLY -> widthSize
+            MeasureSpec.AT_MOST -> widthSize
+            else -> context.resources.displayMetrics.widthPixels
+        }
+
+        val aspectRatio = 1.18f
+        var calculatedHeight = (width * aspectRatio).toInt()
+
+        if (heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.EXACTLY) {
+            calculatedHeight = minOf(calculatedHeight, heightSize)
+        }
+
+        setMeasuredDimension(width, calculatedHeight)
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
