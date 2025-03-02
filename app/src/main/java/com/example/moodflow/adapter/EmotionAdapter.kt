@@ -1,6 +1,7 @@
 package com.example.moodflow.adapter
 
 import android.animation.ValueAnimator
+import android.content.ClipDescription
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,8 @@ import com.example.moodflow.R
 import com.example.moodflow.adapter.CardAdapter.CardViewHolder
 import com.example.moodflow.databinding.EmotionItemBinding
 
-class EmotionAdapter(context: Context, private val recyclerView: RecyclerView) : RecyclerView.Adapter<EmotionAdapter.EmotionViewHolder>() {
+class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, private val onEmotionClick: (Emotion) -> Unit, private val resetDescription: () -> Unit) :
+    RecyclerView.Adapter<EmotionAdapter.EmotionViewHolder>() {
     private val mContext = context
     private var emotionList: MutableList<Emotion> = mutableListOf()
     private var selectedPosition: Int = -1
@@ -58,11 +60,15 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView) :
     }
 
     private fun handleClick(position: Int) {
-        resetAllAnimations()
+        if (selectedPosition == position) resetAllAnimations(true)
+        else {
+            resetAllAnimations()
+            selectedPosition = position
+            animateItem(position)
+            onEmotionClick(emotionList[position])
+        }
 
-        selectedPosition = position
-        if (selectedPosition != position) animateItem(position)
-        else animateItem(position)
+
     }
 
     private fun animateItem(position: Int) {
@@ -112,7 +118,10 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView) :
         }
     }
 
-    private fun resetAllAnimations() {
+    private fun resetAllAnimations(flag: Boolean = false) {
+        if (flag){
+            resetDescription()
+        }
         if (selectedPosition == -1) return
 
         recyclerView.findViewHolderForAdapterPosition(selectedPosition)?.let { holder ->
@@ -151,5 +160,6 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView) :
 
 data class Emotion(
     val emotion: String,
-    val color: Int
+    val color: Int,
+    val description: String
 )
