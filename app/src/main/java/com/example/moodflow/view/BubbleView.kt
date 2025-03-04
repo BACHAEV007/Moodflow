@@ -12,7 +12,7 @@ import android.view.animation.LinearInterpolator
 import kotlin.math.cos
 import kotlin.math.sin
 
-class BubbleView @JvmOverloads constructor(
+class  BubbleView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 

@@ -3,8 +3,8 @@ package com.example.moodflow.state
 import com.example.moodflow.uicontent.CardColor
 import com.example.moodflow.uicontent.CardContent
 
-sealed interface JournalState {
-    data class Content(
+data class JournalState(
+
         val cardsCount: Int = 4,
         val cardInDay: Int = 2,
         val cardStreak: Int = 3,
@@ -14,5 +14,5 @@ sealed interface JournalState {
             CardContent(data = "воскресенье, 23:40", color = CardColor.YELLOW, feeling = "продуктивность"),
             CardContent(data = "воскресенье, 23:40", color = CardColor.RED, feeling = "беспокойство")
         )
-    ) : JournalState
-}
+
+)

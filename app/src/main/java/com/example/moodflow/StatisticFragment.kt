@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moodflow.adapter.StatisticAdapter
 import com.example.moodflow.databinding.StatisticScreenBinding
+import com.example.moodflow.view.CircleDiagramView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -37,6 +38,14 @@ class StatisticFragment : Fragment(R.layout.statistic_screen) {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabNames[position]
         }.attach()
+
     }
 
+
 }
+
+
+
+
+
+

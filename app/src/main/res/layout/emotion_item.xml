@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/circle"
+    android:layout_width="112dp"
+    android:layout_height="112dp"
+    android:layout_margin="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/red_card_text"
+    app:cardCornerRadius="64dp">
+    <TextView
+        android:id="@+id/emotion_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/mock_emotion"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:lineHeight="16dp"
+        android:fontFamily="@font/gwentext_trial_black" />
+
+</androidx.cardview.widget.CardView>

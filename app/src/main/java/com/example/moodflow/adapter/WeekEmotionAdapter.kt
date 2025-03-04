@@ -3,6 +3,7 @@ package com.example.moodflow.adapter
 import android.content.Context
 import android.graphics.Color
 import android.graphics.fonts.Font
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.example.moodflow.uicontent.WeekEmotionContent
 import com.google.android.flexbox.FlexboxLayout
 
 class WeekEmotionAdapter(private val context: Context) : RecyclerView.Adapter<WeekEmotionAdapter.EmotionViewHolder>() {
-    private val emotionList = mutableListOf<WeekEmotionContent>(
+    private val emotionList = mutableListOf(
         WeekEmotionContent(
             emotions = listOf("Спокойствие", "Продуктивность", "Счастье"),
             date = "17 фев",
@@ -85,6 +86,8 @@ class WeekEmotionAdapter(private val context: Context) : RecyclerView.Adapter<We
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )
+                    ellipsize = TextUtils.TruncateAt.END
+                    maxLines = 1
                     text = emotion
                     textSize = 12f
                     setTextColor(Color.parseColor("#808080"))

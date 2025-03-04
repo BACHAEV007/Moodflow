@@ -2,44 +2,33 @@ package com.example.moodflow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.moodflow.databinding.BottomNavigationBinding
-import com.example.moodflow.databinding.JournalScreenBinding
 
-class BottomNavigationActivity : AppCompatActivity(R.layout.bottom_navigation) {
+class BottomNavigationActivity : AppCompatActivity() {
     private lateinit var binding: BottomNavigationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = BottomNavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(JournalFragment())
-        setupBottomNavigation()
-    }
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
+        val bottomNavigationView = binding.bottomNavigation
+        val navController = navHostFragment.navController
+        bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.journalFragment,
+                R.id.settingsFragment,
+                R.id.statisticFragment -> binding.bottomNavigation.isVisible = true
 
-    private fun setupBottomNavigation() {
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.menu_journal -> {
-                    replaceFragment(JournalFragment())
-                    true
-                }
-                R.id.menu_settings-> {
-                    replaceFragment(JournalFragment())
-                    true
-                }
-                R.id.menu_statistic -> {
-                    replaceFragment(StatisticFragment())
-                    true
-                }
-                else -> false
+                else -> binding.bottomNavigation.isVisible = false
             }
         }
     }
-
-    private fun replaceFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_bottom_nav, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
 }
+

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_shape"
+    android:background="@drawable/blue_card_shape"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/card_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="вчера, 23:40"
@@ -28,10 +28,10 @@
         android:lineHeight="28dp"
         android:fontFamily="@font/velasans_regular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/card_data" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/card_emotion_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="выгорание"

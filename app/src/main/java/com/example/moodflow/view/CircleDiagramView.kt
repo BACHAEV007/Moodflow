@@ -6,8 +6,15 @@ import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
+import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.util.TypedValueCompat.pxToSp
+import com.example.moodflow.R
+import kotlinx.parcelize.Parcelize
 
 class CircleDiagramView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -15,16 +22,50 @@ class CircleDiagramView @JvmOverloads constructor(
     var paint = Paint()
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
-        textSize = 60f
+
+        typeface = ResourcesCompat.getFont(context, R.font.velasans_semi_bold)
+        textSize = dpToPx(20f, context)
         textAlign = Paint.Align.CENTER
+
+        letterSpacing = 0f
     }
 
-    private val circles = listOf(
+    private fun dpToPx(dp: Float, context: Context): Float {
+        return dp * context.resources.displayMetrics.density
+    }
+
+    private var circles = mutableListOf(
         CircleData(15f, 0xFF33FFBB.toInt(), 0xFF00FF55.toInt()),
         CircleData(80f, 0xFFFFFF33.toInt(), 0xFFFFAA00.toInt()),
-        CircleData(3f, 0xFFFF3333.toInt(), 0xFFFF6666.toInt()),
-        CircleData(2f, 0xFF3333FF.toInt(), 0xFF6666FF.toInt())
+        CircleData(3f, 0xFFFF6666.toInt(), 0xFFFF3333.toInt()),
+        CircleData(2f, 0xFF6666FF.toInt(), 0xFF3333FF.toInt())
     )
+
+    fun submitList(list: List<CircleData>){
+        circles.clear()
+        circles.addAll(list)
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+
+        val width = when (widthMode) {
+            MeasureSpec.EXACTLY -> widthSize
+            MeasureSpec.AT_MOST -> widthSize
+            else -> context.resources.displayMetrics.widthPixels
+        }
+
+        val displayMetrics = DisplayMetrics()
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val screenHeight = displayMetrics.heightPixels
+
+        val aspectRatio = if (screenHeight < 2100) 1f else 1.18f
+
+        val height = (width * aspectRatio).toInt()
+        setMeasuredDimension(width, height)
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -238,10 +279,10 @@ class CircleDiagramView @JvmOverloads constructor(
         canvas.drawText(text4, x4, y4 + (textPaint.textSize / 2), textPaint)
     }
 
-
+    @Parcelize
     data class CircleData(
         val percent: Float,
         val startColor: Int,
         val endColor: Int
-    )
+    ) : Parcelable
 }

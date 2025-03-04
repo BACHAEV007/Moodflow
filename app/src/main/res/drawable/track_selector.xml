@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="12dp" />
+    <solid android:color="@color/green_checkbox" />
+    <size
+        android:width="52dp"
+        android:height="32dp" />
+</shape>
