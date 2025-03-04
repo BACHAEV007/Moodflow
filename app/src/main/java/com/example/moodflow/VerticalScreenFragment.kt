@@ -1,24 +1,16 @@
 package com.example.moodflow
 
 import android.annotation.SuppressLint
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moodflow.databinding.VerticalStatisticScreenBinding
-import com.example.moodflow.view.CircleDiagramView
 
 class VerticalStatisticScreenFragment : Fragment() {
     private lateinit var binding: VerticalStatisticScreenBinding
@@ -61,10 +53,12 @@ class VerticalStatisticScreenFragment : Fragment() {
                     v.parent.requestDisallowInterceptTouchEvent(true)
                     false
                 }
+
                 MotionEvent.ACTION_MOVE -> {
                     v.parent.requestDisallowInterceptTouchEvent(true)
                     false
                 }
+
                 else -> false
             }
         }
@@ -93,7 +87,7 @@ class VerticalStatisticScreenAdapter(fragment: Fragment) : FragmentStateAdapter(
             1 -> WeekEmotionFragment()
             2 -> FrequentScreenFragment()
             3 -> DayEmotionFragment()
-            else -> throw IllegalStateException("Недопустимая позиция")
+            else -> throw IllegalStateException("")
         }
     }
 
