@@ -2,6 +2,7 @@
 agp = "8.6.0"
 flexbox = "3.0.0"
 fragmentTesting = "1.8.6"
+kakao = "3.4.1"
 kaspresso = "1.5.3"
 kotlin = "1.9.20"
 coreKtx = "1.15.0"
@@ -16,17 +17,25 @@ constraintlayout = "2.2.0"
 materialVersion = "1.8.0"
 navigationFragmentKtx = "2.8.7"
 navigationUiKtx = "2.8.7"
+rules = "1.6.1"
+runner = "1.6.2"
+uiautomator = "2.3.0"
 zoomlayout = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espressoCore" }
 androidx-fragment-testing = { module = "androidx.fragment:fragment-testing", version.ref = "fragmentTesting" }
 androidx-fragment-testing-manifest = { module = "androidx.fragment:fragment-testing-manifest", version.ref = "fragmentTesting" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+androidx-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kakao = { module = "io.github.kakaocup:kakao", version.ref = "kakao" }
 kaspresso = { module = "com.kaspersky.android-components:kaspresso", version.ref = "kaspresso" }
 kotlin-parcelize-runtime = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlinParcelizeRuntime" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
