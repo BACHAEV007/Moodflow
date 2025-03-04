@@ -2,6 +2,7 @@ package com.example.moodflow
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
@@ -52,7 +53,7 @@ class ChooseEmotionFragment : Fragment(R.layout.choose_emotion_screen) {
         binding.backButton.setOnClickListener{
             parentFragmentManager.popBackStack()
         }
-        binding.forwardButton.setOnClickListener {
+        binding.forwardButtonAllow.setOnClickListener {
             findNavController().navigate(R.id.addNotionFragment)
         }
     }
@@ -63,11 +64,15 @@ class ChooseEmotionFragment : Fragment(R.layout.choose_emotion_screen) {
         binding.chooseEmotion.visibility = INVISIBLE
         binding.descriptionCont.visibility = VISIBLE
         binding.description.text = emotion.description
+        binding.forwardButton.visibility = INVISIBLE
+        binding.forwardButtonAllow.visibility = VISIBLE
     }
 
     private fun resetDescription(){
         binding.chooseEmotion.text = getString(R.string.choose_emotion)
         binding.chooseEmotion.visibility = VISIBLE
         binding.descriptionCont.visibility = INVISIBLE
+        binding.forwardButton.visibility = VISIBLE
+        binding.forwardButtonAllow.visibility = GONE
     }
 }

@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -44,9 +45,9 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.flexbox:flexbox:3.0.0")
-    implementation("com.otaliastudios:zoomlayout:1.9.0")
-    implementation("com.google.android.material:material:1.8.0")
+    implementation(libs.flexbox)
+    implementation(libs.zoomlayout)
+    implementation(libs.material.v180)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -57,4 +58,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.kaspresso)
+    androidTestImplementation(libs.androidx.fragment.testing)
+
+    debugImplementation(libs.androidx.fragment.testing.manifest)
+    implementation(libs.kotlin.parcelize.runtime)
 }

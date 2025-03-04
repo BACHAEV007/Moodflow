@@ -34,6 +34,10 @@ class AddNotionFragment : Fragment(R.layout.add_note_screen) {
         binding.backButton.setOnClickListener{
             findNavController().popBackStack()
         }
+        binding.addNotionButton.setOnClickListener {
+            findNavController().popBackStack(R.id.journalFragment, true)
+            findNavController().navigate(R.id.journalFragment)
+        }
     }
     private fun setupChipListeners() {
         listOf(

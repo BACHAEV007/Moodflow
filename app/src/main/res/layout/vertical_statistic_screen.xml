@@ -15,6 +15,8 @@
         android:layout_marginTop="24dp"
         android:nestedScrollingEnabled="true"
         android:orientation="vertical"
+        android:elevation="250dp"
+        android:background="@drawable/shadow_gradient"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

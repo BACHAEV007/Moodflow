@@ -3,6 +3,8 @@ package com.example.moodflow
 import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -16,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moodflow.databinding.VerticalStatisticScreenBinding
+import com.example.moodflow.view.CircleDiagramView
 
 class VerticalStatisticScreenFragment : Fragment() {
     private lateinit var binding: VerticalStatisticScreenBinding
+    private lateinit var adapter: VerticalStatisticScreenAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,12 +36,23 @@ class VerticalStatisticScreenFragment : Fragment() {
         binding = VerticalStatisticScreenBinding.bind(view)
 
         val verticalPager = binding.verticalPager
-        verticalPager.adapter = VerticalStatisticScreenAdapter(this)
+        adapter = VerticalStatisticScreenAdapter(this)
         verticalPager.offscreenPageLimit = 2
-
+        verticalPager.adapter = adapter
         verticalPager.clipToPadding = false
         verticalPager.clipChildren = false
-        val paddingBottom = 104
+        val displayMetrics = DisplayMetrics()
+        val windowManager = requireActivity().windowManager
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        val screenHeight = displayMetrics.heightPixels
+        val paddingBottom = if (screenHeight < 1700) {
+            0
+        } else if (screenHeight < 2100) {
+            96
+        } else {
+            134
+        }
         verticalPager.setPadding(0, 0, 0, paddingBottom)
 
         verticalPager.setOnTouchListener { v, event ->
@@ -69,6 +84,7 @@ class VerticalStatisticScreenFragment : Fragment() {
 }
 
 class VerticalStatisticScreenAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+    private val fragments = mutableMapOf<Int, Fragment>()
     override fun getItemCount(): Int = 4
 
     override fun createFragment(position: Int): Fragment {
@@ -80,4 +96,6 @@ class VerticalStatisticScreenAdapter(fragment: Fragment) : FragmentStateAdapter(
             else -> throw IllegalStateException("Недопустимая позиция")
         }
     }
+
+    fun getFragmentAt(position: Int): Fragment? = fragments[position]
 }

@@ -37,25 +37,26 @@ class GradientBarView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-
         val width = width.toFloat()
         val height = height.toFloat()
         val barHeight = height
-        val maxBarLength = 0.90f
-        val effectiveBarLength = barLength.coerceIn(0f, maxBarLength)
+        val strokeWidth = barHeight
+        val halfStroke = strokeWidth / 2
+        val effectiveBarLength = (barLength * width).coerceIn(halfStroke, width - halfStroke)
 
         val shader = LinearGradient(
             0f, height / 2,
-            width * barLength, height / 2,
+            effectiveBarLength, height / 2,
             intArrayOf(barColorStart, barColorEnd),
             null,
             Shader.TileMode.CLAMP
         )
         paint.shader = shader
-        paint.strokeWidth = barHeight
+        paint.strokeWidth = strokeWidth
         paint.strokeCap = Paint.Cap.ROUND
-        val startX = barHeight / 2
-        val endX = width * effectiveBarLength
+
+        val startX = halfStroke
+        val endX = effectiveBarLength
         canvas.drawLine(startX, height / 2, endX, height / 2, paint)
     }
 }

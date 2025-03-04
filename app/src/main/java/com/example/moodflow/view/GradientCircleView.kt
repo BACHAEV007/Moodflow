@@ -8,28 +8,51 @@ import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import com.example.moodflow.R
 import com.example.moodflow.uicontent.GradientColor
+import kotlin.math.cos
+import kotlin.math.sin
 
 class GradientCircleView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val paint = Paint().apply {
-        style = Paint.Style.STROKE
-        strokeWidth = 60f
-        strokeCap = Paint.Cap.ROUND
-        isAntiAlias = true
-    }
-
+    private var point = 2
     private val progressMap = mutableMapOf<GradientColor, Float>()
     private var totalProgress = 0f
 
+    private val paint = Paint().apply {
+        style = Paint.Style.STROKE
+        strokeWidth = calculateStrokeWidth(context)
+        strokeCap = if (totalProgress != 100f) Paint.Cap.ROUND else Paint.Cap.BUTT
+        isAntiAlias = true
+    }
+
+    private fun calculateStrokeWidth(context: Context): Float {
+        val displayMetrics = DisplayMetrics()
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        val screenWidthDp = pxToDp(displayMetrics.widthPixels, context)
+        return when {
+            screenWidthDp < 390 -> 40f
+            screenWidthDp < 720 -> 60f
+            else -> 80f
+        }
+    }
+
+    private fun pxToDp(px: Int, context: Context): Float {
+        return px / context.resources.displayMetrics.density
+    }
+
+
     private val backgroundPaint = Paint().apply {
         style = Paint.Style.STROKE
-        strokeWidth = 60f
+        strokeWidth = calculateStrokeWidth(context)
         strokeCap = Paint.Cap.ROUND
         isAntiAlias = true
         color = Color.parseColor("#1A1A1A")
@@ -54,33 +77,51 @@ class GradientCircleView @JvmOverloads constructor(
 
         var startAngle = -90f
 
-        val normalizedTotal = if (totalProgress > 1f) 1f else totalProgress
         progressMap.forEach { (color, fraction) ->
-            val sweepAngle = 360f * (fraction / normalizedTotal)
-
+            val sweepAngle = 360f * fraction
+            val startX = centerX + cos(Math.toRadians(startAngle.toDouble())) * radius
+            val startY = centerY + sin(Math.toRadians(startAngle.toDouble())) * radius
+            val endX = centerX + cos(Math.toRadians(sweepAngle.toDouble())) * radius
+            val endY = centerY + sin(Math.toRadians(sweepAngle.toDouble())) * radius
             paint.shader = LinearGradient(
-                centerX - radius, centerY,
-                centerX + radius, centerY,
-                intArrayOf(color.startColor, color.endColor),
+                startX.toFloat(), startY.toFloat(),
+                endX.toFloat(), endY.toFloat(),
+                intArrayOf(color.endColor, color.startColor),
                 null,
                 Shader.TileMode.CLAMP
             )
+            if (paint.strokeCap == Paint.Cap.ROUND && point == 1) {
+                canvas.drawArc(
+                    centerX - radius, centerY - radius,
+                    centerX + radius, centerY + radius,
+                    startAngle + 2f, sweepAngle - 5f, false, paint
+                )
+            }
+            else {
+                canvas.drawArc(
+                    centerX - radius, centerY - radius,
+                    centerX + radius, centerY + radius,
+                    startAngle, sweepAngle, false, paint
+                )
+            }
 
-            canvas.drawArc(
-                centerX - radius, centerY - radius,
-                centerX + radius, centerY + radius,
-                startAngle, sweepAngle, false, paint
-            )
 
             startAngle += sweepAngle
         }
     }
 
     fun setProgress(progressMap: Map<GradientColor, Float>) {
+        if (progressMap.isEmpty()){
+            return
+        }
         this.progressMap.clear()
         this.progressMap.putAll(progressMap)
         totalProgress = progressMap.values.sum()
         invalidate()
+    }
+    fun setPoint(input: Int) {
+        point = input
+        paint.strokeCap = if (totalProgress != 1f) Paint.Cap.ROUND else Paint.Cap.BUTT
     }
 
 }

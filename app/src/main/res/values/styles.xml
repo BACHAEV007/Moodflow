@@ -35,7 +35,7 @@
         <item name="android:background">@drawable/bottom_sheet_background</item>
     </style>
 
-    <style name="AppTimePickerDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+    <style name="CustomTimePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="colorAccent">@color/bottom_nav_item_background</item>
     </style>
 

@@ -9,47 +9,48 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/week_in_day_container"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintHorizontal_weight="0.27"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/emotions_layout">
+
+    <TextView
+        android:id="@+id/day_week"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:text="Понедельник"
+        android:fontFamily="@font/velasans_regular"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/day_week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Понедельник"
-            android:fontFamily="@font/velasans_regular"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="17 фев"
-            android:fontFamily="@font/velasans_regular"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/day_week" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="17 фев"
+        android:fontFamily="@font/velasans_regular"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/day_week" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <LinearLayout
         android:id="@+id/emotions_layout"
         android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="0.31"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@id/week_in_day_container"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="16dp">
+        app:layout_constraintEnd_toStartOf="@id/icons_layout"
+        android:layout_marginStart="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,6 +84,7 @@
 
 
     <com.google.android.flexbox.FlexboxLayout
+        app:layout_constraintHorizontal_weight="0.40"
         android:id="@+id/icons_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -92,7 +94,6 @@
         app:alignItems="center"
         app:layout_constraintStart_toEndOf="@id/emotions_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

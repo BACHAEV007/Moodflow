@@ -4,7 +4,9 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import kotlin.math.cos
 import kotlin.math.sin
@@ -15,11 +17,11 @@ class CircularProgressView @JvmOverloads constructor(
 
     private val paint = Paint().apply {
         style = Paint.Style.STROKE
-        strokeWidth = 60f
+        strokeWidth = calculateStrokeWidth(context)
         strokeCap = Paint.Cap.ROUND
         isAntiAlias = true
     }
-
+    var isAnimating = false
     private var gradientAngle = 0f
 
     private val animator = ValueAnimator.ofFloat(0f, 360f).apply {
@@ -30,6 +32,23 @@ class CircularProgressView @JvmOverloads constructor(
             gradientAngle = it.animatedValue as Float
             invalidate()
         }
+    }
+
+    private fun calculateStrokeWidth(context: Context): Float {
+        val displayMetrics = DisplayMetrics()
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        val screenWidthDp = pxToDp(displayMetrics.widthPixels, context)
+        return when {
+            screenWidthDp < 390 -> 40f
+            screenWidthDp < 720 -> 60f
+            else -> 80f
+        }
+    }
+
+    private fun pxToDp(px: Int, context: Context): Float {
+        return px / context.resources.displayMetrics.density
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -43,7 +62,7 @@ class CircularProgressView @JvmOverloads constructor(
 
         val centerX = width / 2f
         val centerY = height / 2f
-        val radius = (width / 2f) - paint.strokeWidth
+        val radius = (width / 2f) - paint.strokeWidth / 2
         paint.shader = null
         paint.color = Color.parseColor("#1A1A1A")
         canvas.drawCircle(centerX, centerY, radius, paint)
@@ -70,10 +89,16 @@ class CircularProgressView @JvmOverloads constructor(
     fun startAnimation() {
         if (!animator.isRunning) {
             animator.start()
+            isAnimating = true
         }
     }
 
     fun stopAnimation() {
         animator.cancel()
+        isAnimating = false
+    }
+
+    fun isAnimationPlaying(): Boolean {
+        return isAnimating
     }
 }

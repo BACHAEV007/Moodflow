@@ -29,13 +29,13 @@ class SettingsFragment : Fragment(R.layout.settings_screen) {
             settingsAdapter.removeItem(position)
         }
         timePicker = binding.timePicker
-
+        val timeList = arguments?.getStringArrayList("time_key") ?: emptyList()
+        settingsAdapter.submitList(timeList)
         val switch = binding.toggleSwitch
         val fingerSwitch = binding.toggleSwitchFinger
-        binding.recyclerView.apply {
+        binding.notionRecycler.apply {
             adapter = settingsAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            isNestedScrollingEnabled = true
+            layoutManager = LinearLayoutManager(requireContext())
             val spaceHeight = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 16f,
@@ -83,6 +83,7 @@ class SettingsFragment : Fragment(R.layout.settings_screen) {
 
         val timePickerDialog = TimePickerDialog(
             requireContext(),
+            R.style.CustomTimePickerDialogTheme,
             { _, hourOfDay, minute ->
                 val result = Bundle().apply {
                     putInt("hour", hourOfDay)

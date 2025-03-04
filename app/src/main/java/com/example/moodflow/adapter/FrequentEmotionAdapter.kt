@@ -1,5 +1,6 @@
 package com.example.moodflow.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +17,10 @@ class FrequentEmotionAdapter : RecyclerView.Adapter<FrequentEmotionAdapter.Frequ
         FrequentContent(icon = R.drawable.yellow_circle_icon, emotion = "Счастье", count = 2),
         FrequentContent(icon = R.drawable.blue_image_card, emotion = "Выгорание", count = 5),
         FrequentContent(icon = R.drawable.blue_shell_icon, emotion = "Усталость", count = 3)
-    )
+    ).sortedByDescending { it.count }.toMutableList()
     inner class FrequentViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val binding = FrequentEmotionItemBinding.bind(view)
+        @SuppressLint("SetTextI18n")
         fun bind(item: FrequentContent) = with(binding) {
             emotionIcon.setImageResource(item.icon)
             emotionText.text = item.emotion

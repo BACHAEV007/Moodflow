@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,22 +30,13 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
         private val binding = CardItemBinding.bind(view)
 
         fun bind(card: CardContent)= with(binding){
-            textView10.text = card.feeling
-            textView9.text = card.data
+            cardEmotionDesc.text = card.feeling
+            cardData.text = card.data
             val style = getCardStyle(root.context, card.color)
 
-            root.background = GradientDrawable(
-                GradientDrawable.Orientation.TL_BR, style.gradientColors
-            ).apply {
-                shape = GradientDrawable.RECTANGLE
-                cornerRadius = 16.dpToPx().toFloat()
-                gradientType = GradientDrawable.RADIAL_GRADIENT
-                setGradientCenter(1f, 0.1f)
-                gradientRadius = 400.dpToPx().toFloat()
-            }
-            root.background.alpha = (0.4 * 255).toInt()
+            root.background = ContextCompat.getDrawable(root.context, style.backgroundDrawable)
 
-            textView10.setTextColor(style.textColor)
+            cardEmotionDesc.setTextColor(style.textColor)
             feelIcon.setImageResource(style.iconRes)
         }
 
@@ -53,22 +45,22 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     private fun getCardStyle(context: Context, color: CardColor): CardStyle {
         return when (color) {
             CardColor.BLUE -> CardStyle(
-                gradientColors = intArrayOf(Color.parseColor("#00AAFF"), Color.parseColor("#002C2E")),
+                backgroundDrawable = R.drawable.blue_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.blue_card_text),
                 iconRes = R.drawable.blue_image_card
             )
             CardColor.GREEN -> CardStyle(
-                gradientColors = intArrayOf(Color.parseColor("#00FF55"), Color.parseColor("#002C2E")),
+                backgroundDrawable = R.drawable.green_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.green_card_text),
                 iconRes = R.drawable.green_image_card
             )
             CardColor.YELLOW -> CardStyle(
-                gradientColors = intArrayOf(Color.parseColor("#FFAA00"), Color.parseColor("#002C2E")),
+                backgroundDrawable = R.drawable.yellow_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.yellow_card_text),
                 iconRes = R.drawable.yellow_image_card
             )
             CardColor.RED -> CardStyle(
-                gradientColors = intArrayOf(Color.parseColor("#FF0000"), Color.parseColor("#002C2E")),
+                backgroundDrawable = R.drawable.red_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.red_card_text),
                 iconRes = R.drawable.red_image_card
             )
