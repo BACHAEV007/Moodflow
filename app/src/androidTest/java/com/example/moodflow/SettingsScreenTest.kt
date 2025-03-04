@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 class SettingsScreenTest {
     @Test
     fun whenTimeListIsProvided_thenRecyclerViewDisplaysCorrectItems() {
-        val time = arrayListOf("20:00", "19:00", "13:00", "13:00", "13:00")
+        val time = arrayListOf("20:00", "19:00", "13:00", "13:00", "13:00", "13:00", "13:00", "13:00", "13:00", "13:00", "13:00")
         launchFragmentInContainer<SettingsFragment>(
 
             fragmentArgs = Bundle().apply {
@@ -20,6 +20,8 @@ class SettingsScreenTest {
         )
         SettingsFragmentScreen{
             checkRecycler(time)
+            settingsFragmentAddNotionButton.isDisplayed()
+            settingsFragmentAddNotionButton.isClickable()
         }
     }
 
@@ -35,6 +37,8 @@ class SettingsScreenTest {
         )
         SettingsFragmentScreen{
             checkRecycler(time)
+            settingsFragmentAddNotionButton.isDisplayed()
+            settingsFragmentAddNotionButton.isClickable()
         }
     }
 }

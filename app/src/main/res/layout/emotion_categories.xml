@@ -7,12 +7,12 @@
     android:layout_marginTop="24dp">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/emotionCategoryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gwen_trial_regular"
         android:lineHeight="44dp"
-        android:text="Эмоции по категориям"
+        android:text="@string/category_emotions"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +23,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/velasans_regular"
-        android:text="5 записей"
+        android:text="@string/mock_count_category_emotions"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/emotionCategoryText" />
 
     <com.example.moodflow.view.CircleDiagramView
         android:id="@+id/circle_diagram_view"

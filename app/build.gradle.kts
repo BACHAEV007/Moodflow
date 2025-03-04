@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -42,6 +40,7 @@ android {
     viewBinding {
         enable = true
     }
+
 }
 
 dependencies {
@@ -65,4 +64,11 @@ dependencies {
 
     debugImplementation(libs.androidx.fragment.testing.manifest)
     implementation(libs.kotlin.parcelize.runtime)
+
+    androidTestImplementation(libs.androidx.uiautomator)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+
+    androidTestImplementation(libs.kakao)
+    androidTestImplementation(libs.androidx.espresso.contrib)
 }

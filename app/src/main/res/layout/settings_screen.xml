@@ -2,7 +2,6 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,12 +22,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/emotionCategoryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gwen_trial_regular"
             android:lineHeight="44dp"
-            android:text="Настройки"
+            android:text="@string/settings"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +39,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4">
+            app:layout_constraintTop_toBottomOf="@+id/emotionCategoryText">
 
 
             <ImageView
@@ -63,7 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/velasans_bold"
                 android:lineHeight="32dp"
-                android:text="Иван Иванов"
+                android:text="@string/mock_name"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -132,8 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:overScrollMode="never"
                 android:nestedScrollingEnabled="true"
+                android:overScrollMode="never"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
             <com.google.android.material.button.MaterialButton
@@ -145,7 +144,7 @@
                 android:fontFamily="@font/velasans_medium"
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="16dp"
-                android:text="Добавить напоминание"
+                android:text="@string/add_notion_text"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:cornerRadius="80dp"

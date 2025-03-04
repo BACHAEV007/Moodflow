@@ -1,9 +1,9 @@
 package com.example.moodflow
 
+import android.content.Context
 import androidx.test.core.app.ActivityScenario
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import kotlinx.coroutines.delay
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -11,10 +11,11 @@ import org.junit.runner.RunWith
 class MainActivityTest {
     @Test
     fun startTest() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
         launchActivity()
 
-        MainActivityScreen{
-            checkText("Добро пожаловать")
+        MainActivityScreen {
+            checkText(context.getString(R.string.welcome))
             clickWelcomeButton()
         }
     }

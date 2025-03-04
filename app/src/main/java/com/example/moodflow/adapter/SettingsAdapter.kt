@@ -8,15 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.moodflow.R
 import com.example.moodflow.databinding.NotificationItemBinding
-import com.example.moodflow.uicontent.CardContent
 
 class SettingsAdapter(
     private val onDeleteClick: (Int) -> Unit
 ) : RecyclerView.Adapter<SettingsAdapter.SettingsViewHolder>() {
-    val notifications: MutableList<String> = mutableListOf("20:00", "19:00", "19:00", "19:00", "19:00")
-    inner class SettingsViewHolder(view: View) : ViewHolder(view){
+    val notifications: MutableList<String> =
+        mutableListOf("20:00", "19:00", "19:00", "19:00", "19:00")
+
+    inner class SettingsViewHolder(view: View) : ViewHolder(view) {
         private val binding = NotificationItemBinding.bind(view)
-        fun bind(item: String) = with(binding){
+        fun bind(item: String) = with(binding) {
             timeText.text = item
             deleteButton.setOnClickListener {
                 onDeleteClick(position)
@@ -30,8 +31,10 @@ class SettingsAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : SettingsViewHolder {
-        return SettingsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingsViewHolder {
+        return SettingsViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false)
+        )
     }
 
     override fun getItemCount(): Int = notifications.size

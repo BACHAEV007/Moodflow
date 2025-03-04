@@ -18,8 +18,10 @@ class FrequentEmotionAdapter : RecyclerView.Adapter<FrequentEmotionAdapter.Frequ
         FrequentContent(icon = R.drawable.blue_image_card, emotion = "Выгорание", count = 5),
         FrequentContent(icon = R.drawable.blue_shell_icon, emotion = "Усталость", count = 3)
     ).sortedByDescending { it.count }.toMutableList()
-    inner class FrequentViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
+    inner class FrequentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = FrequentEmotionItemBinding.bind(view)
+
         @SuppressLint("SetTextI18n")
         fun bind(item: FrequentContent) = with(binding) {
             emotionIcon.setImageResource(item.icon)
@@ -37,7 +39,7 @@ class FrequentEmotionAdapter : RecyclerView.Adapter<FrequentEmotionAdapter.Frequ
 
     private fun getGradientStartColor(iconRes: Int): Int = when (iconRes) {
         R.drawable.green_image_card -> R.color.green_start_gradient
-        R.drawable.yellow_image_card,R.drawable.yellow_circle_icon -> R.color.yellow_start_gradient
+        R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_start_gradient
         R.drawable.red_image_card -> R.color.red_start_gradient
         R.drawable.blue_shell_icon, R.drawable.blue_image_card -> R.color.blue_start_gradient
         else -> Color.GRAY
@@ -45,7 +47,7 @@ class FrequentEmotionAdapter : RecyclerView.Adapter<FrequentEmotionAdapter.Frequ
 
     private fun getGradientEndColor(iconRes: Int): Int = when (iconRes) {
         R.drawable.green_image_card -> R.color.green_end_gradient
-        R.drawable.yellow_image_card,R.drawable.yellow_circle_icon -> R.color.yellow_end_gradient
+        R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_end_gradient
         R.drawable.red_image_card -> R.color.red_end_gradient
         R.drawable.blue_shell_icon, R.drawable.blue_image_card -> R.color.blue_end_gradient
         else -> Color.LTGRAY

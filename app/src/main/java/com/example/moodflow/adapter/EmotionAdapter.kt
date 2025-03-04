@@ -1,23 +1,24 @@
 package com.example.moodflow.adapter
 
-import android.animation.ValueAnimator
-import android.content.ClipDescription
 import android.content.Context
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.moodflow.R
-import com.example.moodflow.adapter.CardAdapter.CardViewHolder
 import com.example.moodflow.databinding.EmotionItemBinding
+import kotlinx.parcelize.Parcelize
 
-class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, private val onEmotionClick: (Emotion) -> Unit, private val resetDescription: () -> Unit) :
+class EmotionAdapter(
+    context: Context,
+    private val recyclerView: RecyclerView,
+    private val onEmotionClick: (Emotion) -> Unit,
+    private val resetDescription: () -> Unit
+) :
     RecyclerView.Adapter<EmotionAdapter.EmotionViewHolder>() {
     private val mContext = context
     private var emotionList: MutableList<Emotion> = mutableListOf()
@@ -32,7 +33,7 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, p
         val binding = EmotionItemBinding.bind(view)
 
         init {
-            binding.circle.setOnClickListener { v ->
+            binding.circleItem.setOnClickListener { v ->
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     handleClick(position)
@@ -41,8 +42,8 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, p
         }
 
         fun bind(emotion: Emotion) {
-            binding.emotionText.text = emotion.emotion
-            binding.circle.setCardBackgroundColor(ContextCompat.getColor(mContext, emotion.color))
+            binding.circleEmotionText.text = emotion.emotion
+            binding.circleItem.setCardBackgroundColor(ContextCompat.getColor(mContext, emotion.color))
         }
     }
 
@@ -77,7 +78,7 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, p
         val selectedCol = position % gridSize
 
         recyclerView.findViewHolderForAdapterPosition(position)?.let { holder ->
-            (holder as? EmotionViewHolder)?.binding?.circle?.animate()?.apply {
+            (holder as? EmotionViewHolder)?.binding?.circleItem?.animate()?.apply {
                 scaleX(1.2f)
                 scaleY(1.2f)
                 duration = 300
@@ -105,7 +106,7 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, p
                     }
 
                     recyclerView.findViewHolderForAdapterPosition(i)?.let { holder ->
-                        (holder as? EmotionViewHolder)?.binding?.circle?.animate()?.apply {
+                        (holder as? EmotionViewHolder)?.binding?.circleItem?.animate()?.apply {
                             translationX(translationX)
                             translationY(translationY)
                             duration = 200
@@ -119,13 +120,13 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, p
     }
 
     private fun resetAllAnimations(flag: Boolean = false) {
-        if (flag){
+        if (flag) {
             resetDescription()
         }
         if (selectedPosition == -1) return
 
         recyclerView.findViewHolderForAdapterPosition(selectedPosition)?.let { holder ->
-            (holder as? EmotionViewHolder)?.binding?.circle?.animate()?.apply {
+            (holder as? EmotionViewHolder)?.binding?.circleItem?.animate()?.apply {
                 scaleX(1f)
                 scaleY(1f)
                 duration = 200
@@ -158,8 +159,9 @@ class EmotionAdapter(context: Context, private val recyclerView: RecyclerView, p
     }
 }
 
+@Parcelize
 data class Emotion(
     val emotion: String,
     val color: Int,
     val description: String
-)
+) : Parcelable

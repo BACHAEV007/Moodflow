@@ -2,10 +2,7 @@ package com.example.moodflow.adapter
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
 import android.graphics.Rect
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +14,8 @@ import com.example.moodflow.uicontent.CardColor
 import com.example.moodflow.uicontent.CardContent
 import com.example.moodflow.uicontent.CardStyle
 
-class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter(private val navigate: () -> Unit) :
+    RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     private val cardList = mutableListOf<CardContent>()
 
     fun submitList(newCards: List<CardContent>) {
@@ -26,14 +24,17 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class CardViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    inner class CardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = CardItemBinding.bind(view)
 
-        fun bind(card: CardContent)= with(binding){
+        fun bind(card: CardContent) = with(binding) {
             cardEmotionDesc.text = card.feeling
             cardData.text = card.data
             val style = getCardStyle(root.context, card.color)
 
+            cardLayout.setOnClickListener {
+                navigate()
+            }
             root.background = ContextCompat.getDrawable(root.context, style.backgroundDrawable)
 
             cardEmotionDesc.setTextColor(style.textColor)
@@ -49,16 +50,19 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
                 textColor = ContextCompat.getColor(context, R.color.blue_card_text),
                 iconRes = R.drawable.blue_image_card
             )
+
             CardColor.GREEN -> CardStyle(
                 backgroundDrawable = R.drawable.green_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.green_card_text),
                 iconRes = R.drawable.green_image_card
             )
+
             CardColor.YELLOW -> CardStyle(
                 backgroundDrawable = R.drawable.yellow_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.yellow_card_text),
                 iconRes = R.drawable.yellow_image_card
             )
+
             CardColor.RED -> CardStyle(
                 backgroundDrawable = R.drawable.red_card_shape,
                 textColor = ContextCompat.getColor(context, R.color.red_card_text),

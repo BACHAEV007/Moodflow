@@ -2,10 +2,7 @@ package com.example.moodflow
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,11 +14,10 @@ import com.example.moodflow.state.JournalState
 import com.example.moodflow.uicontent.CardColor
 import com.example.moodflow.uicontent.CardContent
 import com.example.moodflow.uicontent.GradientColor
-import com.google.android.flexbox.FlexboxLayout
 import kotlinx.parcelize.Parcelize
 
 class JournalFragment : Fragment(R.layout.journal_screen) {
-    private val cardAdapter = CardAdapter()
+    private val cardAdapter = CardAdapter { findNavController().navigate(R.id.addNotionFragment) }
     lateinit var binding: JournalScreenBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,23 +48,35 @@ class JournalFragment : Fragment(R.layout.journal_screen) {
         }
 
 
-
-        val carouselManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val carouselManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.cards.apply {
             layoutManager = carouselManager
             adapter = cardAdapter
             setNestedScrollingEnabled(false)
             addItemDecoration(SpaceItemDecoration(8.dpToPx()))
         }
-        binding.addEmotionButton.setOnClickListener{
+        binding.addEmotionButton.setOnClickListener {
             findNavController().navigate(R.id.chooseEmotionFragment)
         }
 
-        val daysText = resources.getQuantityString(R.plurals.numberOfDaySeria, journalState.cardStreak, journalState.cardStreak)
+        val daysText = resources.getQuantityString(
+            R.plurals.numberOfDaySeria,
+            journalState.cardStreak,
+            journalState.cardStreak
+        )
         binding.streak.text = daysText
-        val cardsInDay = resources.getQuantityString(R.plurals.numberOfNotes, journalState.cardInDay, journalState.cardInDay)
+        val cardsInDay = resources.getQuantityString(
+            R.plurals.numberOfNotes,
+            journalState.cardInDay,
+            journalState.cardInDay
+        )
         binding.cardsInDay.text = cardsInDay
-        val cardsCount = resources.getQuantityString(R.plurals.numberOfNotes, journalState.cardsCount, journalState.cardsCount)
+        val cardsCount = resources.getQuantityString(
+            R.plurals.numberOfNotes,
+            journalState.cardsCount,
+            journalState.cardsCount
+        )
         binding.cardsCount.text = cardsCount
     }
 
@@ -76,8 +84,16 @@ class JournalFragment : Fragment(R.layout.journal_screen) {
         return listOf(
             CardContent(data = "вчера, 23:40", color = CardColor.GREEN, feeling = "спокойствие"),
             CardContent(data = "вчера, 23:40", color = CardColor.BLUE, feeling = "выгорание"),
-            CardContent(data = "воскресенье, 23:40", color = CardColor.YELLOW, feeling = "продуктивность"),
-            CardContent(data = "воскресенье, 23:40", color = CardColor.RED, feeling = "беспокойство")
+            CardContent(
+                data = "воскресенье, 23:40",
+                color = CardColor.YELLOW,
+                feeling = "продуктивность"
+            ),
+            CardContent(
+                data = "воскресенье, 23:40",
+                color = CardColor.RED,
+                feeling = "беспокойство"
+            )
         )
     }
 

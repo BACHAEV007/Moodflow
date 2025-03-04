@@ -52,7 +52,7 @@
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/add_notion_button"
+            app:layout_constraintBottom_toTopOf="@+id/add_emotion_notion_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -94,7 +94,7 @@
                         android:layout_marginTop="48dp"
                         android:fontFamily="@font/velasans_regular"
                         android:lineHeight="28dp"
-                        android:text="Я чувствую"
+                        android:text="@string/i_am_feeling"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -320,7 +320,7 @@
         </ScrollView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_notion_button"
+            android:id="@id/add_emotion_notion_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -66,4 +66,42 @@
     <string name="what_did_you_do">Чем вы занимались?</string>
     <string name="with_who">С кем вы были?</string>
     <string name="where_you_been">Где вы были?</string>
+
+    <string name="chip_food">Приём пищи</string>
+    <string name="chip_meeting_friends">Встреча с друзьями</string>
+    <string name="chip_workout">Тренировка</string>
+    <string name="chip_hobby">Хобби</string>
+    <string name="chip_rest">Отдых</string>
+    <string name="chip_trip">Поездка</string>
+
+    <string name="chip_alone">Один</string>
+    <string name="chip_friends">Друзья</string>
+    <string name="chip_family">Семья</string>
+    <string name="chip_colleagues">Коллеги</string>
+    <string name="chip_partner">Партнёр</string>
+    <string name="chip_pets">Питомцы</string>
+
+    <string name="chip_home">Дом</string>
+    <string name="chip_work">Работа</string>
+    <string name="chip_school">Школа</string>
+    <string name="chip_transport">Транспорт</string>
+    <string name="chip_street">Улица</string>
+
+    <string name="chip_empty"></string>
+
+    <string name="day_monday">Понедельник</string>
+    <string name="day_tuesday">Вторник</string>
+    <string name="day_wednesday">Среда</string>
+    <string name="day_thursday">Четверг</string>
+    <string name="day_friday">Пятница</string>
+    <string name="day_saturday">Суббота</string>
+    <string name="day_sunday">Воскресенье</string>
+    <string name="category_emotions">Эмоции по категориям</string>
+    <string name="mock_count_category_emotions">5 записей</string>
+    <string name="mock_name">Иван Иванов</string>
+    <string name="add_notion_text">Добавить напоминание</string>
+    <string name="mock_one">1</string>
+    <string name="mock_yesterday_23">вчера, 23:40</string>
+    <string name="i_am_feeling">Я чувствую</string>
+    <string name="mock_card_emotion">выгорание</string>
 </resources>

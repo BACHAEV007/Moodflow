@@ -18,7 +18,8 @@ class FrequentScreenFragment : Fragment(R.layout.frequent_emotions_screen) {
         binding = FrequentEmotionsScreenBinding.bind(view)
         binding.emotionContainer.apply {
             adapter = emotionAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
         val spaceInDp = 8
@@ -26,7 +27,7 @@ class FrequentScreenFragment : Fragment(R.layout.frequent_emotions_screen) {
         binding.emotionContainer.addItemDecoration(VerticalSpaceItemDecoration(spaceInPx))
     }
 
-    fun dpToPx(dp: Int): Int {
+    private fun dpToPx(dp: Int): Int {
         return (dp * Resources.getSystem().displayMetrics.density).toInt()
     }
 }

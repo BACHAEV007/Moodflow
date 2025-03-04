@@ -1,10 +1,10 @@
 package com.example.moodflow
 
 import android.view.View
-import com.example.moodflow.uicontent.CardContent
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.recycler.KRecyclerView
+import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 
@@ -14,6 +14,8 @@ object SettingsFragmentScreen : KScreen<SettingsFragmentScreen>() {
     override val viewClass: Class<*>
         get() = SettingsFragment::class.java
 
+    val settingsFragmentAddNotionButton: KButton = KButton { withId(R.id.add_notion_button) }
+
     private val recycler = KRecyclerView(
         builder = { withId(R.id.notionRecycler) },
         itemTypeBuilder = {
@@ -22,7 +24,7 @@ object SettingsFragmentScreen : KScreen<SettingsFragmentScreen>() {
     )
 
     fun checkRecycler(notifications: List<String>) {
-        for(i in notifications.indices) {
+        for (i in notifications.indices) {
             CheckRecyclerItem(i, notifications[i])
         }
     }

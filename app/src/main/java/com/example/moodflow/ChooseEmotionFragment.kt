@@ -19,7 +19,7 @@ class ChooseEmotionFragment : Fragment(R.layout.choose_emotion_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ChooseEmotionScreenBinding.bind(view)
-        val emotions = listOf(
+        val emotions = arguments?.getParcelableArrayList("circles_key") ?: listOf(
             Emotion(getString(R.string.emotion_rage), R.color.red_card_text, getString(R.string.description_rage)),
             Emotion(getString(R.string.emotion_tension), R.color.red_card_text, getString(R.string.description_tension)),
             Emotion(getString(R.string.emotion_excitement), R.color.yellow_card_text, getString(R.string.description_excitement)),
@@ -39,18 +39,18 @@ class ChooseEmotionFragment : Fragment(R.layout.choose_emotion_screen) {
         )
 
 
-        emotionAdapter = EmotionAdapter(requireContext(), binding.emotionContainer, { emotion ->
+        emotionAdapter = EmotionAdapter(requireContext(), binding.chooseEmotionContainer, { emotion ->
             setEmotion(emotion)
         }, {
             resetDescription()
         })
 
         emotionAdapter.setEmotions(emotions)
-        binding.emotionContainer.apply {
+        binding.chooseEmotionContainer.apply {
             adapter = emotionAdapter
             layoutManager = GridLayoutManager(requireContext(), 4)
         }
-        binding.backButton.setOnClickListener{
+        binding.chooseBackButton.setOnClickListener{
             parentFragmentManager.popBackStack()
         }
         binding.forwardButtonAllow.setOnClickListener {

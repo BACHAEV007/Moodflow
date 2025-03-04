@@ -2,7 +2,6 @@ package com.example.moodflow.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.fonts.Font
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -16,45 +15,57 @@ import com.example.moodflow.databinding.WeekEmotionItemBinding
 import com.example.moodflow.uicontent.WeekEmotionContent
 import com.google.android.flexbox.FlexboxLayout
 
-class WeekEmotionAdapter(private val context: Context) : RecyclerView.Adapter<WeekEmotionAdapter.EmotionViewHolder>() {
+class WeekEmotionAdapter(private val context: Context) :
+    RecyclerView.Adapter<WeekEmotionAdapter.EmotionViewHolder>() {
     private val emotionList = mutableListOf(
         WeekEmotionContent(
             emotions = listOf("Спокойствие", "Продуктивность", "Счастье"),
             date = "17 фев",
-            icons = listOf(R.drawable.green_image_card, R.drawable.red_image_card, R.drawable.blue_image_card),
+            icons = listOf(
+                R.drawable.green_image_card,
+                R.drawable.red_image_card,
+                R.drawable.blue_image_card
+            ),
 
-            ), WeekEmotionContent(
+            ),
+        WeekEmotionContent(
             emotions = listOf("Выгорание", "Усталость"),
             date = "18 фев",
             icons = listOf(R.drawable.yellow_image_card, R.drawable.blue_image_card)
-        ), WeekEmotionContent(
+        ),
+        WeekEmotionContent(
             emotions = listOf(),
             date = "19 фев",
             icons = listOf()
-        ), WeekEmotionContent(
+        ),
+        WeekEmotionContent(
             emotions = listOf(),
             date = "20 фев",
             icons = listOf()
-        ), WeekEmotionContent(
+        ),
+        WeekEmotionContent(
             emotions = listOf(),
             date = "21 фев",
             icons = listOf()
-        ), WeekEmotionContent(
+        ),
+        WeekEmotionContent(
             emotions = listOf(),
             date = "22 фев",
             icons = listOf()
-        ), WeekEmotionContent(
+        ),
+        WeekEmotionContent(
             emotions = listOf(),
             date = "23 фев",
             icons = listOf()
         ),
     )
+
     inner class EmotionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = WeekEmotionItemBinding.bind(view)
-        fun bind(content: WeekEmotionContent, weekDay: String) = with(binding){
+        fun bind(content: WeekEmotionContent, weekDay: String) = with(binding) {
             dayWeek.text = weekDay
             date.text = content.date
-            if(content.icons.isEmpty()){
+            if (content.icons.isEmpty()) {
                 val imageView = ImageView(itemView.context).apply {
                     setImageResource(R.drawable.mock_icon)
                 }
@@ -114,18 +125,17 @@ class WeekEmotionAdapter(private val context: Context) : RecyclerView.Adapter<We
         )
     }
 
-    private fun getDayOfWeek(position: Int) : String =
-        when(position){
-            0 -> "Понедельник"
-            1 -> "Вторник"
-            2 -> "Среда"
-            3 -> "Четверг"
-            4 -> "Пятница"
-            5 -> "Суббота"
-            6 -> "Воскресенье"
+    private fun getDayOfWeek(position: Int): String =
+        when (position) {
+            0 -> context.getString(R.string.day_monday)
+            1 -> context.getString(R.string.day_tuesday)
+            2 -> context.getString(R.string.day_wednesday)
+            3 -> context.getString(R.string.day_thursday)
+            4 -> context.getString(R.string.day_friday)
+            5 -> context.getString(R.string.day_saturday)
+            6 -> context.getString(R.string.day_sunday)
             else -> ""
         }
-
 
     override fun getItemCount(): Int {
         return emotionList.size
