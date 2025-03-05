@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moodflow.R
@@ -101,7 +102,7 @@ class WeekEmotionAdapter(private val context: Context) :
                     maxLines = 1
                     text = emotion
                     textSize = 12f
-                    setTextColor(Color.parseColor("#808080"))
+                    setTextColor(ContextCompat.getColor(context, R.color.light_gray))
                     setTypeface(typeface)
                 }
                 emotionsLayout.addView(textView)
