@@ -9,6 +9,7 @@ import android.graphics.Shader
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.example.moodflow.R
 
 class GradientBarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -17,7 +18,7 @@ class GradientBarView @JvmOverloads constructor(
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var barLength: Float = 0f
     private var barColorStart: Int = Color.GREEN
-    private var barColorEnd: Int = Color.parseColor("#00FF55")
+    private var barColorEnd: Int = ContextCompat.getColor(context, R.color.bottom_nav_color)
 
     fun setBarParams(length: Float, startColorRes: Int, endColorRes: Int) {
         barLength = length.coerceIn(0f, 1f)

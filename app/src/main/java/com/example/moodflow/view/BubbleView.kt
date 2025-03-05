@@ -9,6 +9,8 @@ import android.graphics.Shader
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.core.content.ContextCompat
+import com.example.moodflow.R
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -19,10 +21,10 @@ class  BubbleView @JvmOverloads constructor(
     private val paint = Paint()
     private var animator: ValueAnimator
     private val gradients = listOf(
-        GradientInfo(0f, 0f, 1500f, 0xFF33FF77.toInt(), 0x0033FF77.toInt()),
-        GradientInfo(0f, 0f, 1500f, 0xFFFF3333.toInt(), 0x00FF3333.toInt()),
-        GradientInfo(0f, 0f, 1500f, 0xFFFFBB33.toInt(), 0x00FFBB33.toInt()),
-        GradientInfo(0f, 0f, 1500f, 0xFF33BBFF.toInt(), 0x0033BBFF.toInt())
+        GradientInfo(0f, 0f, 1500f, ContextCompat.getColor(context, R.color.green_card_text),  ContextCompat.getColor(context, R.color.green_card_text_transparent)),
+        GradientInfo(0f, 0f, 1500f,  ContextCompat.getColor(context, R.color.red_card_text),  ContextCompat.getColor(context, R.color.red_card_text_transparent)),
+        GradientInfo(0f, 0f, 1500f,  ContextCompat.getColor(context, R.color.yellow_card_text),  ContextCompat.getColor(context, R.color.yellow_card_text_transparent)),
+        GradientInfo(0f, 0f, 1500f,  ContextCompat.getColor(context, R.color.blue_card_text),  ContextCompat.getColor(context, R.color.blue_card_text_transparent))
     )
     private var animationProgress = 0f
 

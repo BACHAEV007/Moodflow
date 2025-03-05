@@ -7,6 +7,8 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.example.moodflow.R
 
 class ViewPagerIndicatorView @JvmOverloads constructor(
     context: Context,
@@ -32,7 +34,7 @@ class ViewPagerIndicatorView @JvmOverloads constructor(
             resources.displayMetrics
         )
 
-        paint.color = Color.parseColor("#333333")
+        paint.color = ContextCompat.getColor(context, R.color.bottom_nav_color)
     }
 
     fun setSelectedPosition(position: Int) {
@@ -49,7 +51,7 @@ class ViewPagerIndicatorView @JvmOverloads constructor(
 
         for (i in 0 until totalCircles) {
             val centerY = radius + (radius * 2 + spacing) * i + radius
-            paint.color = Color.parseColor("#333333")
+            paint.color = ContextCompat.getColor(context, R.color.bottom_nav_color)
             canvas.drawCircle(centerX, centerY, radius, paint)
         }
 

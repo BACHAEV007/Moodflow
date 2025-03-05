@@ -12,6 +12,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
+import androidx.core.content.ContextCompat
 import com.example.moodflow.R
 import com.example.moodflow.uicontent.GradientColor
 import kotlin.math.cos
@@ -55,7 +56,7 @@ class GradientCircleView @JvmOverloads constructor(
         strokeWidth = calculateStrokeWidth(context)
         strokeCap = Paint.Cap.ROUND
         isAntiAlias = true
-        color = Color.parseColor("#1A1A1A")
+        color = ContextCompat.getColor(context, R.color.black_button)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

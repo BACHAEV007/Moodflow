@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.util.TypedValueCompat.pxToSp
 import com.example.moodflow.R
@@ -35,10 +36,22 @@ class CircleDiagramView @JvmOverloads constructor(
     }
 
     private var circles = mutableListOf(
-        CircleData(15f, 0xFF33FFBB.toInt(), 0xFF00FF55.toInt()),
-        CircleData(80f, 0xFFFFFF33.toInt(), 0xFFFFAA00.toInt()),
-        CircleData(3f, 0xFFFF6666.toInt(), 0xFFFF3333.toInt()),
-        CircleData(2f, 0xFF6666FF.toInt(), 0xFF3333FF.toInt())
+        CircleData(15f,
+            ContextCompat.getColor(context, R.color.green_end_gradient),
+            ContextCompat.getColor(context, R.color.green_start_gradient)
+        ),
+        CircleData(80f,
+            ContextCompat.getColor(context, R.color.yellow_end_gradient),
+            ContextCompat.getColor(context, R.color.yellow_start_gradient)
+        ),
+        CircleData(3f,
+            ContextCompat.getColor(context, R.color.red_end_gradient),
+            ContextCompat.getColor(context, R.color.red_start_gradient)
+        ),
+        CircleData(2f,
+            ContextCompat.getColor(context, R.color.blue_end_gradient),
+            ContextCompat.getColor(context, R.color.blue_start_gradient)
+        )
     )
 
     fun submitList(list: List<CircleData>){

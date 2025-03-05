@@ -8,6 +8,8 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
+import androidx.core.content.ContextCompat
+import com.example.moodflow.R
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -64,7 +66,7 @@ class CircularProgressView @JvmOverloads constructor(
         val centerY = height / 2f
         val radius = (width / 2f) - paint.strokeWidth / 2
         paint.shader = null
-        paint.color = Color.parseColor("#1A1A1A")
+        paint.color = ContextCompat.getColor(context, R.color.black_button)
         canvas.drawCircle(centerX, centerY, radius, paint)
         val startX = centerX + cos(Math.toRadians(gradientAngle.toDouble())) * radius
         val startY = centerY + sin(Math.toRadians(gradientAngle.toDouble())) * radius
@@ -74,7 +76,7 @@ class CircularProgressView @JvmOverloads constructor(
         paint.shader = LinearGradient(
             startX.toFloat(), startY.toFloat(),
             endX.toFloat(), endY.toFloat(),
-            intArrayOf(Color.parseColor("#1A1A1A"), Color.parseColor("#666666")),
+            intArrayOf(ContextCompat.getColor(context, R.color.black_button), Color.parseColor("#666666")),
             null,
             Shader.TileMode.CLAMP
         )

@@ -7,9 +7,16 @@
     <color name="green_card_text">#33FF77</color>
     <color name="yellow_card_text">#FFBB33</color>
     <color name="red_card_text">#FF3333</color>
+
+    <color name="blue_card_text_transparent">#0033BBFF</color>
+    <color name="green_card_text_transparent">#0033FF77</color>
+    <color name="yellow_card_text_transparent">#00FFBB33</color>
+    <color name="red_card_text_transparent">#00FF3333</color>
+
     <color name="bottom_nav_color">#333333</color>
 
     <color name="gray_button">#666666</color>
+    <color name="black_button">#1A1A1A</color>
 
     <color name="green_checkbox">#00AC47</color>
 
