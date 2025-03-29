@@ -1,7 +1,7 @@
 #  Moodflow
 
 ![platform](https://img.shields.io/badge/platform-Android-brightgreen)
-![kotlin](https://img.shields.io/badge/kotlin-v1.9.0-purple)
+![kotlin](https://img.shields.io/badge/kotlin-v1.9.20-purple)
 
 ## ❗ WARNING (Project still on development stage)
 
