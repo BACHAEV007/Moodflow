@@ -1,11 +1,12 @@
-package com.example.moodflow
+package com.example.moodflow.presentation
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.moodflow.R
 import com.example.moodflow.databinding.DayEmotionScreenBinding
-import com.example.moodflow.view.ColorBlocksView
+import com.example.moodflow.presentation.view.ColorBlocksView
 
 class DayEmotionFragment : Fragment(R.layout.day_emotion_screen) {
     private lateinit var binding: DayEmotionScreenBinding
@@ -69,18 +70,18 @@ class DayEmotionFragment : Fragment(R.layout.day_emotion_screen) {
     }
 
     private fun getGradientStartColor(iconRes: Int): Int = when (iconRes) {
-        R.drawable.green_image_card -> R.color.green_start_gradient
+        R.drawable.green_image_card                                 -> R.color.green_start_gradient
         R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_start_gradient
-        R.drawable.red_image_card -> R.color.red_start_gradient
-        R.drawable.blue_shell_icon, R.drawable.blue_image_card -> R.color.blue_start_gradient
-        else -> Color.GRAY
+        R.drawable.red_image_card                                   -> R.color.red_start_gradient
+        R.drawable.blue_shell_icon, R.drawable.blue_image_card      -> R.color.blue_start_gradient
+        else                                                        -> Color.GRAY
     }
 
     private fun getGradientEndColor(iconRes: Int): Int = when (iconRes) {
-        R.drawable.green_image_card -> R.color.green_end_gradient
+        R.drawable.green_image_card                                 -> R.color.green_end_gradient
         R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_end_gradient
-        R.drawable.red_image_card -> R.color.red_end_gradient
-        R.drawable.blue_shell_icon, R.drawable.blue_image_card -> R.color.blue_end_gradient
-        else -> Color.LTGRAY
+        R.drawable.red_image_card                                   -> R.color.red_end_gradient
+        R.drawable.blue_shell_icon, R.drawable.blue_image_card      -> R.color.blue_end_gradient
+        else                                                        -> Color.LTGRAY
     }
 }
