@@ -182,7 +182,7 @@ class CircleDiagramView @JvmOverloads constructor(
         )
         paint.shader = shader1
         canvas.drawCircle(x1, y1, radius1, paint)
-        val text1 = "${circles[0].percent}%"
+        val text1 = "${circles[0].percent.toInt()}%"
         canvas.drawText(text1, x1, y1 + (textPaint.textSize / 2), textPaint)
 
         val x2 = width - radius2
@@ -196,7 +196,7 @@ class CircleDiagramView @JvmOverloads constructor(
         )
         paint.shader = shader2
         canvas.drawCircle(x2, y2, radius2, paint)
-        val text2 = "${circles[1].percent}%"
+        val text2 = "${circles[1].percent.toInt()}%"
         canvas.drawText(text2, x2, y2 + (textPaint.textSize / 2), textPaint)
 
         val x3 = radius3
@@ -210,7 +210,7 @@ class CircleDiagramView @JvmOverloads constructor(
         )
         paint.shader = shader3
         canvas.drawCircle(x3, y3, radius3, paint)
-        val text3 = "${circles[2].percent}%"
+        val text3 = "${circles[2].percent.toInt()}%"
         canvas.drawText(text3, x3, y3 + (textPaint.textSize / 2), textPaint)
     }
 

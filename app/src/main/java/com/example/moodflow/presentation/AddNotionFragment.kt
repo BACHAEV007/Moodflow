@@ -2,7 +2,6 @@ package com.example.moodflow.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -12,25 +11,17 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.moodflow.R
 import com.example.moodflow.databinding.AddNoteScreenBinding
-import com.example.moodflow.domain.model.EmotionTypeModel
 import com.example.moodflow.presentation.mapper.toCardStyle
 import com.example.moodflow.presentation.viewmodel.AddEmotionViewModel
-import com.example.moodflow.utils.DateTimeFormatterUtil
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.core.qualifier._q
 
 class AddNotionFragment : Fragment(R.layout.add_note_screen) {
 
@@ -51,7 +42,6 @@ class AddNotionFragment : Fragment(R.layout.add_note_screen) {
 			var lastId: Long? = null
 			viewModel.state.collect { content ->
 				content.let { c ->
-					Log.d("PENIS", c.id.toString())
 					if (c.id != lastId && c.id != null) {
 						initAllChips()
 						syncChipsFromState(binding.activitiesChip,    c.activities,   requireContext())
@@ -80,7 +70,6 @@ class AddNotionFragment : Fragment(R.layout.add_note_screen) {
 	}
 
 	private fun initAllChips() {
-		// Маппим позицию на соответствующий callback во ViewModel
 		val groups = listOf(
 			Triple(binding.addActivityChip,   binding.editActivityChip,   binding.activitiesChip)   to { sel: List<String> -> viewModel.setActivities(sel) },
 			Triple(binding.addEnvironmentChip,binding.editEnvironmentChip,binding.environmentChip) to { sel: List<String> -> viewModel.setCompanions(sel) },
@@ -88,20 +77,16 @@ class AddNotionFragment : Fragment(R.layout.add_note_screen) {
 		)
 
 		groups.forEachIndexed { index, (triple, onSelected) ->
-			val pos = index + 1  // 1,2,3
+			val pos = index + 1
 			val (addChip, editText, chipGroup) = triple
 
-			// 1) Сбросить старые чипы
 			chipGroup.removeAllViews()
 
-			// 2) Добавить базовые
 			setupChip(fillChipData(pos, requireContext()), chipGroup)
 
-			// 3) В конце — вернуть поле ввода и "+"
 			chipGroup.addView(editText)
 			chipGroup.addView(addChip)
 
-			// 4) Лайклинеры для "+"
 			addChip.setOnClickListener {
 				toggleEditTextVisibility(editText, addChip)
 				showKeyboard(editText)
@@ -109,59 +94,6 @@ class AddNotionFragment : Fragment(R.layout.add_note_screen) {
 			editText.setOnFocusChangeListener { _, hasFocus ->
 				if (!hasFocus) hideEditText(editText, addChip)
 			}
-			editText.setOnEditorActionListener { v, actionId, _ ->
-				if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
-					val newText = v.text.toString().trim()
-					if (newText.isNotEmpty()) {
-						addNewChip(newText, chipGroup, requireContext())
-					}
-					hideKeyboard(v)
-					hideEditText(editText, addChip)
-					true
-				} else {
-					false
-				}
-			}
-
-			// 5) Слушатель выбора чипов — сразу шлёт в ViewModel
-			chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-				val selected = checkedIds.mapNotNull { id ->
-					(group.findViewById<Chip>(id)).text.toString().takeIf(String::isNotBlank)
-				}
-				onSelected(selected)
-			}
-		}
-	}
-
-	private fun setupChipListeners() {
-		listOf(
-			Triple(binding.addActivityChip, binding.editActivityChip, binding.activitiesChip)    to { selected: List<String> ->
-				viewModel.setActivities(selected)
-			},
-			Triple(
-				binding.addEnvironmentChip,
-				binding.editEnvironmentChip,
-				binding.environmentChip
-			) to { selected: List<String> ->
-				viewModel.setCompanions(selected)
-			},
-			Triple(binding.addPlaceChip, binding.editPlaceChip, binding.placeChip)to { selected: List<String> ->
-				viewModel.setLocations(selected)
-			}
-		).forEach { (triple, onSelected) ->
-			val (addChip, editText, chipGroup) = triple
-
-			addChip.setOnClickListener {
-				toggleEditTextVisibility(editText, addChip)
-				showKeyboard(editText)
-			}
-
-			editText.setOnFocusChangeListener { v, hasFocus ->
-				if (!hasFocus) {
-					hideEditText(editText, addChip)
-				}
-			}
-
 			editText.setOnEditorActionListener { v, actionId, _ ->
 				if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
 					val newText = v.text.toString().trim()
@@ -301,10 +233,5 @@ class AddNotionFragment : Fragment(R.layout.add_note_screen) {
 		view.chipSpacingVertical = resources.getDimensionPixelSize(R.dimen.chip_spacing)
 	}
 
-	override fun onStop() {
-		super.onStop()
-		binding.activitiesChip.removeAllViews()
-		binding.environmentChip.removeAllViews()
-		binding.placeChip.removeAllViews()
-	}
+
 }

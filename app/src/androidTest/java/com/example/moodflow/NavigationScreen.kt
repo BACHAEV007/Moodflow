@@ -1,6 +1,7 @@
 package com.example.moodflow
 
 import android.view.View
+import com.example.moodflow.presentation.BottomNavigationActivity
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.recycler.KRecyclerItem

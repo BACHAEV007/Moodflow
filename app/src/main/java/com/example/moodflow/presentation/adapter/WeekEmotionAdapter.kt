@@ -13,52 +13,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moodflow.R
 import com.example.moodflow.databinding.WeekEmotionItemBinding
 import com.example.moodflow.presentation.uicontent.WeekEmotionContent
+import com.example.moodflow.utils.Constants.DAY_IN_WEEK
 import com.google.android.flexbox.FlexboxLayout
 
 class WeekEmotionAdapter(private val context: Context) :
     RecyclerView.Adapter<WeekEmotionAdapter.EmotionViewHolder>() {
-    private val emotionList = mutableListOf(
-        WeekEmotionContent(
-            emotions = listOf("Спокойствие", "Продуктивность", "Счастье"),
-            date = "17 фев",
-            icons = listOf(
-                R.drawable.green_image_card,
-                R.drawable.red_image_card,
-                R.drawable.blue_image_card
-            ),
 
-            ),
-        WeekEmotionContent(
-            emotions = listOf("Выгорание", "Усталость"),
-            date = "18 фев",
-            icons = listOf(R.drawable.yellow_image_card, R.drawable.blue_image_card)
-        ),
-        WeekEmotionContent(
-            emotions = listOf(),
-            date = "19 фев",
-            icons = listOf()
-        ),
-        WeekEmotionContent(
-            emotions = listOf(),
-            date = "20 фев",
-            icons = listOf()
-        ),
-        WeekEmotionContent(
-            emotions = listOf(),
-            date = "21 фев",
-            icons = listOf()
-        ),
-        WeekEmotionContent(
-            emotions = listOf(),
-            date = "22 фев",
-            icons = listOf()
-        ),
-        WeekEmotionContent(
-            emotions = listOf(),
-            date = "23 фев",
-            icons = listOf()
-        ),
-    )
+    private val emotionList = MutableList(DAY_IN_WEEK) { WeekEmotionContent(emotions = emptyList(), icons = emptyList(), date = "") }
+
+    fun updateData(newData: List<WeekEmotionContent>) {
+        newData.forEachIndexed { index, content ->
+            if (index in emotionList.indices) {
+                emotionList[index] = content
+            }
+        }
+        notifyDataSetChanged()
+    }
 
     inner class EmotionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = WeekEmotionItemBinding.bind(view)
@@ -72,15 +42,16 @@ class WeekEmotionAdapter(private val context: Context) :
                 iconsLayout.addView(imageView)
             } else {
                 content.icons.forEach { iconRes ->
+                    val iconResId = context.resources.getIdentifier(iconRes, "drawable", context.packageName)
                     val imageView = ImageView(itemView.context).apply {
-                        setImageResource(iconRes)
+                        setImageResource(iconResId)
                         val params = FlexboxLayout.LayoutParams(dpToPx(40), dpToPx(40))
                         layoutParams = params
 
                         if (iconsLayout.childCount > 0) {
                             params.setMargins(dpToPx(4), 0, 0, 0)
                         }
-                        setImageResource(iconRes)
+                        setImageResource(iconResId)
                         scaleType = ImageView.ScaleType.FIT_CENTER
                         adjustViewBounds = true
                     }

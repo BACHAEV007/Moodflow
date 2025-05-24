@@ -7,15 +7,26 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moodflow.R
 import com.example.moodflow.databinding.VerticalStatisticScreenBinding
+import com.example.moodflow.presentation.viewmodel.StatisticViewModel
+import com.example.moodflow.utils.Constants.WEEK_INDEX
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class VerticalStatisticScreenFragment : Fragment() {
     private lateinit var binding: VerticalStatisticScreenBinding
     private lateinit var adapter: VerticalStatisticScreenAdapter
+    private val weekIndex: Int by lazy {
+        requireArguments().getInt(WEEK_INDEX)
+    }
+    private val viewModel: StatisticViewModel by sharedViewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,12 +39,23 @@ class VerticalStatisticScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = VerticalStatisticScreenBinding.bind(view)
 
+        viewModel.selectWeek(weekIndex)
+        lifecycleScope.launch {
+            viewModel.getWeekEmotionsFlow(weekIndex)
+                .collect { emotions ->
+                    adapter = VerticalStatisticScreenAdapter(this@VerticalStatisticScreenFragment, weekIndex, viewModel)
+                    binding.verticalPager.adapter = adapter
+                    binding.verticalPager.offscreenPageLimit = 2
+                    binding.verticalPager.clipToPadding = false
+                    binding.verticalPager.clipChildren = false
+                }
+        }
+
+
+
         val verticalPager = binding.verticalPager
-        adapter = VerticalStatisticScreenAdapter(this)
         verticalPager.offscreenPageLimit = 2
-        verticalPager.adapter = adapter
-        verticalPager.clipToPadding = false
-        verticalPager.clipChildren = false
+
         val displayMetrics = DisplayMetrics()
         val windowManager = requireActivity().windowManager
         windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -78,16 +100,31 @@ class VerticalStatisticScreenFragment : Fragment() {
     }
 }
 
-class VerticalStatisticScreenAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class VerticalStatisticScreenAdapter(
+    fragment: Fragment,
+    private val weekIndex: Int,
+    private val viewModel: StatisticViewModel
+) : FragmentStateAdapter(fragment) {
     private val fragments = mutableMapOf<Int, Fragment>()
     override fun getItemCount(): Int = 4
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> EmotionCategoriesFragment()
-            1 -> WeekEmotionFragment()
-            2 -> FrequentScreenFragment()
-            3 -> DayEmotionFragment()
+            0 -> {
+                val circles = viewModel.getCircleData(weekIndex)
+                EmotionCategoriesFragment.newInstance(ArrayList(circles.first), circles.second)
+            }
+            1 -> {
+                val weeksData = viewModel.getWeekEmotions(weekIndex)
+                WeekEmotionFragment.newInstance(ArrayList(weeksData))
+            }
+            2 -> {
+                val frequentData = viewModel.getFrequentEmotionData(weekIndex)
+                FrequentScreenFragment.newInstance(ArrayList(frequentData))
+            }
+            3 -> DayEmotionFragment().apply {
+                arguments = bundleOf("arg_week_index" to weekIndex)
+            }
             else -> throw IllegalStateException("")
         }
     }

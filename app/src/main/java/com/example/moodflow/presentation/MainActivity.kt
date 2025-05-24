@@ -5,6 +5,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.biometric.BiometricPrompt.PromptInfo
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,6 +17,7 @@ import com.example.moodflow.R
 import com.example.moodflow.data.firebase.GoogleAuthClient
 import com.example.moodflow.databinding.ActivityMainBinding
 import com.example.moodflow.presentation.viewmodel.AuthViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,15 +25,53 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val authViewModel: AuthViewModel by viewModel()
     private val googleAuthClient by lazy { GoogleAuthClient(this) }
+
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: PromptInfo
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (googleAuthClient.isSingedIn()){
-            authViewModel.syncUser()
-            startActivity(Intent(this@MainActivity, BottomNavigationActivity::class.java))
+
+        promptInfo = PromptInfo.Builder()
+            .setTitle("Вход по биометрии")
+            .setSubtitle("Подтвердите личность")
+            .setNegativeButtonText("Отмена")
+            .build()
+
+        val executor = ContextCompat.getMainExecutor(this)
+        biometricPrompt = BiometricPrompt(this@MainActivity, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    authViewModel.syncUser()
+                    startActivity(Intent(this@MainActivity, BottomNavigationActivity::class.java))
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    authViewModel.syncUser()
+                    startActivity(Intent(this@MainActivity, BottomNavigationActivity::class.java))
+                }
+            }
+        )
+        lifecycleScope.launch {
+            val biometricEnabled = authViewModel.fingerprintEnabled.first()
+
+            if (googleAuthClient.isSingedIn()) {
+                if (canAuthenticateBiometric() && biometricEnabled) {
+                    biometricPrompt.authenticate(promptInfo)
+                } else {
+                    authViewModel.syncUser()
+                    startActivity(Intent(this@MainActivity, BottomNavigationActivity::class.java))
+                }
+            }
         }
+
         window.apply {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT
@@ -50,5 +93,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.bubbleView.startAnimation()
+    }
+
+    private fun canAuthenticateBiometric(): Boolean {
+        val manager = BiometricManager.from(this)
+        return manager.canAuthenticate(
+            BiometricManager.Authenticators.BIOMETRIC_STRONG or
+                BiometricManager.Authenticators.DEVICE_CREDENTIAL
+        ) == BiometricManager.BIOMETRIC_SUCCESS
     }
 }

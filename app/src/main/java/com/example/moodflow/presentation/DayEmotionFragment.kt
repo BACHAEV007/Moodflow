@@ -1,87 +1,50 @@
 package com.example.moodflow.presentation
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.moodflow.R
 import com.example.moodflow.databinding.DayEmotionScreenBinding
 import com.example.moodflow.presentation.view.ColorBlocksView
+import com.example.moodflow.presentation.viewmodel.StatisticViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DayEmotionFragment : Fragment(R.layout.day_emotion_screen) {
     private lateinit var binding: DayEmotionScreenBinding
+    private val viewModel: StatisticViewModel by sharedViewModel()
+    companion object {
+        private const val ARG_WEEK_INDEX = "arg_week_index"
+    }
+    private val weekIndex: Int by lazy {
+        requireArguments().getInt(ARG_WEEK_INDEX)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DayEmotionScreenBinding.bind(view)
-        val firstColorBlocksView = binding.firstColumn
 
-        val blocks = listOf(
-            listOf(
-                ColorBlocksView.Block(
-                    percentage = 0.5f,
-                    startColor = getGradientStartColor(R.drawable.green_image_card),
-                    endColor = getGradientEndColor(R.drawable.green_image_card)
-                ),
-                ColorBlocksView.Block(
-                    percentage = 0.2f,
-                    startColor = getGradientStartColor(R.drawable.red_image_card),
-                    endColor = getGradientEndColor(R.drawable.red_image_card)
-                ),
-                ColorBlocksView.Block(
-                    percentage = 0.3f,
-                    startColor = getGradientStartColor(R.drawable.blue_shell_icon),
-                    endColor = getGradientEndColor(R.drawable.blue_shell_icon)
-                )
-            ),
-            listOf(
-                ColorBlocksView.Block(
-                    percentage = 0.1f,
-                    startColor = getGradientStartColor(R.drawable.green_image_card),
-                    endColor = getGradientEndColor(R.drawable.green_image_card)
-                ),
-                ColorBlocksView.Block(
-                    percentage = 0.9f,
-                    startColor = getGradientStartColor(R.drawable.red_image_card),
-                    endColor = getGradientEndColor(R.drawable.red_image_card)
-                )
-            ),
-            listOf(
-                ColorBlocksView.Block(
-                    percentage = 1f,
-                    startColor = getGradientStartColor(R.drawable.yellow_circle_icon),
-                    endColor = getGradientEndColor(R.drawable.yellow_circle_icon)
-                )
-            ),
-            listOf(),
-            listOf()
+        val blocks: List<Pair<List<ColorBlocksView.Block>, Int>> =
+            viewModel.getDayEmotionBlocks(weekIndex)
 
+        val columns = listOf(
+            binding.firstColumn,
+            binding.secondColumn,
+            binding.thirdColumn,
+            binding.fourthColumn,
+            binding.fifthColumn
         )
 
-        firstColorBlocksView.setBlocks(blocks[0])
-        binding.secondColumn.setBlocks(blocks[1])
-        binding.thirdColumn.setBlocks(blocks[2])
-        binding.fourthColumn.setBlocks()
-        binding.fifthColumn.setBlocks()
-        binding.earlyMorning.text = blocks[0].size.toString()
-        binding.morning.text = blocks[1].size.toString()
-        binding.day.text = blocks[2].size.toString()
-        binding.evening.text = blocks[3].size.toString()
-        binding.lateEvening.text = blocks[4].size.toString()
-    }
+        columns.forEachIndexed { idx, colView ->
+            if (blocks[idx].first.isEmpty()){
+                colView.setBlocks()
+            } else{
+                colView.setBlocks(blocks.getOrNull(idx)?.first.orEmpty())
+            }
+        }
 
-    private fun getGradientStartColor(iconRes: Int): Int = when (iconRes) {
-        R.drawable.green_image_card                                 -> R.color.green_start_gradient
-        R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_start_gradient
-        R.drawable.red_image_card                                   -> R.color.red_start_gradient
-        R.drawable.blue_shell_icon, R.drawable.blue_image_card      -> R.color.blue_start_gradient
-        else                                                        -> Color.GRAY
-    }
-
-    private fun getGradientEndColor(iconRes: Int): Int = when (iconRes) {
-        R.drawable.green_image_card                                 -> R.color.green_end_gradient
-        R.drawable.yellow_image_card, R.drawable.yellow_circle_icon -> R.color.yellow_end_gradient
-        R.drawable.red_image_card                                   -> R.color.red_end_gradient
-        R.drawable.blue_shell_icon, R.drawable.blue_image_card      -> R.color.blue_end_gradient
-        else                                                        -> Color.LTGRAY
+        binding.earlyMorning.text = blocks[0].second.toString()
+        binding.morning.text = blocks[1].second.toString()
+        binding.day.text = blocks[2].second.toString()
+        binding.evening.text = blocks[3].second.toString()
+        binding.lateEvening.text = blocks[4].second.toString()
     }
 }

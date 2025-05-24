@@ -10,7 +10,6 @@ import com.example.moodflow.databinding.BottomNavigationBinding
 
 class BottomNavigationActivity : AppCompatActivity() {
     private lateinit var binding: BottomNavigationBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = BottomNavigationBinding.inflate(layoutInflater)

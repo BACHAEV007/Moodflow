@@ -26,4 +26,12 @@ class AuthRepositoryImpl(
 	override fun getCurrentUserEmail(): String? {
 		return googleAuthClient.getCurrentUserEmail()
 	}
+
+	override fun getCurrentUserAvatar(): String {
+		return googleAuthClient.getCurrentUserAvatar().toString()
+	}
+
+	override fun getCurrentUserName(): String? {
+		return googleAuthClient.getCurrentUserName()
+	}
 }

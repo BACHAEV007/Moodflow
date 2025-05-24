@@ -57,7 +57,7 @@
 
 
 
-        <com.example.moodflow.view.GradientBarView
+        <com.example.moodflow.presentation.view.GradientBarView
             android:id="@+id/gradient_bar"
             android:layout_width="0dp"
             android:layout_height="0dp"

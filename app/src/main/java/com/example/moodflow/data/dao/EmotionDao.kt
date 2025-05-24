@@ -1,8 +1,6 @@
 package com.example.moodflow.data.dao
 
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import com.example.moodflow.data.entity.Emotion
@@ -18,4 +16,12 @@ interface EmotionDao {
 
 	@Upsert
 	suspend fun insertEmotion(entry: Emotion): Long
+
+	@Query("""
+        SELECT * FROM emotion 
+        WHERE userId = :uid 
+          AND timestamp BETWEEN :startDate AND :endDate 
+        ORDER BY timestamp DESC
+    """)
+	suspend fun getEmotionsForDateRange(uid: String, startDate: Long, endDate: Long): List<Emotion>
 }

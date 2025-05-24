@@ -6,26 +6,26 @@
     app:startDestination="@id/journalFragment">
     <fragment
         android:id="@+id/journalFragment"
-        android:name="com.example.moodflow.JournalFragment"
+        android:name="com.example.moodflow.presentation.JournalFragment"
         android:label="JournalFragment">
     </fragment>
     <fragment
         android:id="@+id/statisticFragment"
-        android:name="com.example.moodflow.StatisticFragment"
+        android:name="com.example.moodflow.presentation.StatisticFragment"
         android:label="StatisticFragment">
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.moodflow.SettingsFragment"
+        android:name="com.example.moodflow.presentation.SettingsFragment"
         android:label="SettingsFragment">
     </fragment>
     <fragment
         android:id="@+id/chooseEmotionFragment"
-        android:name="com.example.moodflow.ChooseEmotionFragment"
+        android:name="com.example.moodflow.presentation.ChooseEmotionFragment"
         android:label="ChooseEmotionScreen" />
     <fragment
         android:id="@+id/addNotionFragment"
-        android:name="com.example.moodflow.AddNotionFragment"
+        android:name="com.example.moodflow.presentation.AddNotionFragment"
         android:label="AddNotionFragment" />
 
 </navigation>

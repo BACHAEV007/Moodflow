@@ -1,12 +1,10 @@
 package com.example.moodflow
 
 import android.view.View
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import com.example.moodflow.uicontent.CardContent
-import com.example.moodflow.view.GradientCircleView
+import com.example.moodflow.presentation.JournalFragment
+import com.example.moodflow.presentation.uicontent.CardContent
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.common.views.KView
-import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView

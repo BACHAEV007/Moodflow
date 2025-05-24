@@ -1,5 +1,6 @@
 package com.example.moodflow
 
+import com.example.moodflow.presentation.EmotionCategoriesFragment
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.text.KTextView

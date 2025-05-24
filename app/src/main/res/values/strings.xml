@@ -104,4 +104,5 @@
     <string name="mock_yesterday_23">вчера, 23:40</string>
     <string name="i_am_feeling">Я чувствую</string>
     <string name="mock_card_emotion">выгорание</string>
+	<string name="notification_permission">Разрешите присылать уведомления в настройках</string>
 </resources>

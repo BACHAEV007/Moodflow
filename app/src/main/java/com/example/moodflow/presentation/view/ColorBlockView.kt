@@ -52,7 +52,7 @@ class ColorBlocksView @JvmOverloads constructor(
         textPaint.typeface = ResourcesCompat.getFont(context, R.font.velasans_bold)
     }
 
-    data class Block(val color: Int = R.color.bottom_nav_color, var percentage: Float = 0F, val startColor: Int = 1, val endColor: Int = 1)
+    data class Block(val color: Int = R.color.bottom_nav_color, var percentage: Float = 0F, val startColor: Int = 1, val endColor: Int = 1, val count: Int = 0)
 
     fun setBlocks(newBlocks: List<Block> = listOf(Block())) {
         blocks.clear()

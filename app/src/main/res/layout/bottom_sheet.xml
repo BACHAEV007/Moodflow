@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.example.moodflow.view.CustomClockView
+    <com.example.moodflow.presentation.view.CustomClockView
         android:id="@+id/clock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <com.example.moodflow.view.BubbleView
+    tools:context=".presentation.MainActivity">
+    <com.example.moodflow.presentation.view.BubbleView
         android:id="@+id/bubble_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.example.moodflow.view.BubbleView>
+    </com.example.moodflow.presentation.view.BubbleView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

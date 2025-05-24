@@ -47,14 +47,20 @@ android {
 
 dependencies {
     val room_version = "2.7.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
-    implementation("io.insert-koin:koin-android:3.5.3")
-    implementation("io.insert-koin:koin-androidx-compose:3.5.3")
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
+    implementation("io.insert-koin:koin-android:3.5.6")
+    implementation(libs.koin.androidx.compose)
 
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation(libs.androidx.biometric)
+
+    implementation(libs.androidx.datastore.preferences.core)
 
     implementation(libs.flexbox)
     implementation(libs.zoomlayout)

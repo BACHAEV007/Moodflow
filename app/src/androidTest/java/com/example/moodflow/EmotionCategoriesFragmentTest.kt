@@ -5,7 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.moodflow.view.CircleDiagramView
+import com.example.moodflow.presentation.EmotionCategoriesFragment
+import com.example.moodflow.presentation.view.CircleDiagramView
 import org.junit.Test
 import org.junit.runner.RunWith
 

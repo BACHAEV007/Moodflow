@@ -6,4 +6,6 @@ interface AuthRepository {
 	fun isSignedIn(): Boolean
 	fun getCurrentUserId(): String?
 	fun getCurrentUserEmail(): String?
+	fun getCurrentUserAvatar(): String
+	fun getCurrentUserName(): String?
 }

@@ -1,24 +1,16 @@
 package com.example.moodflow
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentFactory
-import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import com.example.moodflow.state.JournalState
-import com.example.moodflow.uicontent.CardColor
-import com.example.moodflow.uicontent.CardContent
-import com.example.moodflow.uicontent.GradientColor
-import com.kaspersky.kaspresso.testcases.api.testcase.DocLocScreenshotTestCase
+import com.example.moodflow.presentation.JournalFragment
+import com.example.moodflow.presentation.ProgressMap
+import com.example.moodflow.presentation.uicontent.CardColor
+import com.example.moodflow.presentation.uicontent.CardContent
+import com.example.moodflow.presentation.uicontent.GradientColor
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
 @RunWith(AndroidJUnit4::class)
 class JournalFragmentTest{

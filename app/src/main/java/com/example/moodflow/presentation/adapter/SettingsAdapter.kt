@@ -8,24 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.moodflow.R
 import com.example.moodflow.databinding.NotificationItemBinding
+import com.example.moodflow.domain.model.NotificationModel
 
 class SettingsAdapter(
-    private val onDeleteClick: (Int) -> Unit
+    private val onDeleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<SettingsAdapter.SettingsViewHolder>() {
-    val notifications: MutableList<String> =
-        mutableListOf("20:00", "19:00", "19:00", "19:00", "19:00")
+    val notifications: MutableList<NotificationModel> = mutableListOf()
 
     inner class SettingsViewHolder(view: View) : ViewHolder(view) {
         private val binding = NotificationItemBinding.bind(view)
-        fun bind(item: String) = with(binding) {
-            timeText.text = item
+        fun bind(item: NotificationModel) = with(binding) {
+            timeText.text = item.time
             deleteButton.setOnClickListener {
-                onDeleteClick(position)
+                onDeleteClick(item.id)
             }
         }
     }
 
-    fun submitList(newNotification: List<String>) {
+    fun submitList(newNotification: List<NotificationModel>) {
         notifications.clear()
         notifications.addAll(newNotification)
         notifyDataSetChanged()
@@ -54,7 +54,7 @@ class SettingsAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addNotification(time: String) {
+    fun addNotification(time: NotificationModel) {
         notifications.add(time)
         notifyItemInserted(notifications.size - 1)
         notifyDataSetChanged()

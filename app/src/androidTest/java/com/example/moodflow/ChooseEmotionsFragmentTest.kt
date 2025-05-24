@@ -15,7 +15,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.moodflow.NavigationScreen.chooseEmotionFragmentButton
 import com.example.moodflow.NavigationScreen.chooseEmotionFragmentButtonDisable
-import com.example.moodflow.adapter.Emotion
+import com.example.moodflow.presentation.ChooseEmotionFragment
+import com.example.moodflow.presentation.adapter.Emotion
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.Test
@@ -32,82 +33,98 @@ class ChooseEmotionsFragmentTest {
             Emotion(
                 context.getString(R.string.emotion_rage),
                 R.color.red_card_text,
-                context.getString(R.string.description_rage)
+                context.getString(R.string.description_rage),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_tension),
                 R.color.red_card_text,
-                context.getString(R.string.description_tension)
+                context.getString(R.string.description_tension),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_excitement),
                 R.color.yellow_card_text,
-                context.getString(R.string.description_excitement)
+                context.getString(R.string.description_excitement),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_confidence),
                 R.color.yellow_card_text,
-                context.getString(R.string.description_confidence)
+                context.getString(R.string.description_confidence),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_envy),
                 R.color.red_card_text,
-                context.getString(R.string.description_envy)
+                context.getString(R.string.description_envy),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_anxiety),
                 R.color.red_card_text,
-                context.getString(R.string.description_anxiety)
+                context.getString(R.string.description_anxiety),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_arousal),
                 R.color.yellow_card_text,
-                context.getString(R.string.description_arousal)
+                context.getString(R.string.description_arousal),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_happiness),
                 R.color.yellow_card_text,
-                context.getString(R.string.description_happiness)
+                context.getString(R.string.description_happiness),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_burnout),
                 R.color.blue_card_text,
-                context.getString(R.string.description_burnout)
+                context.getString(R.string.description_burnout),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_tiredness),
                 R.color.blue_card_text,
-                context.getString(R.string.description_tiredness)
+                context.getString(R.string.description_tiredness),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_calmness),
                 R.color.green_card_text,
-                context.getString(R.string.description_calmness)
+                context.getString(R.string.description_calmness),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_satisfaction),
                 R.color.green_card_text,
-                context.getString(R.string.description_satisfaction)
+                context.getString(R.string.description_satisfaction),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_depression),
                 R.color.blue_card_text,
-                context.getString(R.string.description_depression)
+                context.getString(R.string.description_depression),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_apathy),
                 R.color.blue_card_text,
-                context.getString(R.string.description_apathy)
+                context.getString(R.string.description_apathy),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_gratitude),
                 R.color.green_card_text,
-                context.getString(R.string.description_gratitude)
+                context.getString(R.string.description_gratitude),
+                "red_image_card"
             ),
             Emotion(
                 context.getString(R.string.emotion_security),
                 R.color.green_card_text,
-                context.getString(R.string.description_security)
+                context.getString(R.string.description_security),
+                "red_image_card"
             )
         )
 
