@@ -1,13 +1,13 @@
 package com.example.moodflow.data.firebase
 
 import android.content.Context
+import android.net.Uri
+import android.util.Log
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
-import com.example.moodflow.data.repository.AuthRepositoryImpl
-import com.example.moodflow.domain.repository.AuthRepository
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -16,8 +16,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.tasks.await
 import org.koin.android.ext.koin.androidContext
-import kotlin.coroutines.cancellation.CancellationException
 import org.koin.dsl.module
+import kotlin.coroutines.cancellation.CancellationException
 
 val firebaseModule = module {
 	single { GoogleAuthClient(androidContext()) }
@@ -40,11 +40,13 @@ class GoogleAuthClient(
 
 	suspend fun signIn(): FirebaseUser? {
 		if (isSingedIn()) {
+			Log.d("DEBUG", "Result = $firebaseAuth.currentUser")
 			return firebaseAuth.currentUser
 		}
 
 		return try {
 			val result = buildCredentialRequest()
+			Log.d("DEBUG", "Result = $result")
 			handleSignIn(result)
 		} catch (e: Exception) {
 			e.printStackTrace()
@@ -83,7 +85,7 @@ class GoogleAuthClient(
 				GetGoogleIdOption.Builder()
 					.setFilterByAuthorizedAccounts(false)
 					.setServerClientId(
-						"XXXXXXXX"
+						"XXXXX"
 					)
 					.setAutoSelectEnabled(false)
 					.build()
@@ -105,6 +107,14 @@ class GoogleAuthClient(
 
 	fun getCurrentUserId(): String? {
 		return firebaseAuth.currentUser?.uid
+	}
+
+	fun getCurrentUserAvatar(): Uri? {
+		return firebaseAuth.currentUser?.photoUrl
+	}
+
+	fun getCurrentUserName(): String? {
+		return firebaseAuth.currentUser?.displayName
 	}
 
 	fun getCurrentUserEmail(): String? {
