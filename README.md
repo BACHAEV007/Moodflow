@@ -1,4 +1,4 @@
-#  My Emotions -  app to track your emotional state
+#  Moodflow -  приложение для отслеживания и записи твоего эмоционального состояния.
 
 ![platform](https://img.shields.io/badge/platform-Android-brightgreen)
 ![kotlin](https://img.shields.io/badge/kotlin-v1.9.0-purple)
@@ -9,6 +9,16 @@
 ## 📚 Libraries and tools used
 - Custom View
 - Material 3
+- Firebase Authentication (Google Sign-In)
+- DataStore Preferences
+- Room
+- Navigation Component
+- Biometric API (авторизация по отпечатку)
+- Glide (загрузка изображений)
+- Dependency Injection с Koin
+- UI-тестирование с Kakao и Kaspresso
+- Flexbox Layout
+- ZoomLayout (масштабируемые элементы UI)
 
 ## 📱 Screenshots 
 ### Welcome Screen | Journal
