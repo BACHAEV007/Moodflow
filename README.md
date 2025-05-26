@@ -4,8 +4,6 @@
 ![kotlin](https://img.shields.io/badge/kotlin-v1.9.0-purple)
 ![minSDK](https://img.shields.io/badge/minSDK-28-red)
 
-## ❗ WARNING (Project still on development stage)
-
 ## 📚 Libraries and tools used
 - Custom View
 - Material 3
